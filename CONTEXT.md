@@ -29,8 +29,16 @@ A Game Session in which the Play Group is physically together. Gamesbud's launch
 _Avoid_: Local multiplayer, remote play
 
 **Launch Audience**:
-English-speaking casual Players aged 13–30 who are already together and want an effortless 5–20 minute social activity.
+English-speaking casual Players aged 13–30 who are already together and want an effortless 5–20 minute social activity. Friend groups aged 13–19 are the beachhead, with young adults as a secondary audience.
 _Avoid_: Children under 13, dedicated competitive gamers
+
+**Launch Occasion**:
+An informal gathering of three or four friends—at home, in a dorm, or while waiting—who want a shared 5–20 minute activity without learning rules or preparing materials.
+_Avoid_: Scheduled game night
+
+**Family Play**:
+A secondary play occasion involving Players from different generations, such as a parent and teenager, with every Player aged 13 or older.
+_Avoid_: Children's game
 
 **MVP Catalog**:
 The initial public catalog of three polished Games: two Cooperative Games and one light competitive Game. Expansion toward six to eight Games begins only after the MVP demonstrates healthy retention.
@@ -39,6 +47,14 @@ _Avoid_: Launch Catalog, game library
 **Cooperative Game**:
 A Game in which the Play Group pursues a shared goal, preferably through asymmetric roles or information that makes Players depend on one another.
 _Avoid_: Solo puzzle played together
+
+**Cooperative-First**:
+Gamesbud's launch strategy in which cooperation is the primary positioning, first Game Session experience, and majority of the MVP Catalog, while light competitive Games provide supporting variety.
+_Avoid_: Cooperative-only
+
+**Social Interaction**:
+The exchange of hints, help, reactions, and emotions among Players that a Game Session inspires. It may be verbal or nonverbal and does not have to be required by a Game's rules.
+_Avoid_: Mandatory voice communication
 
 **Session Identity**:
 A temporary display name that lets a Player join and complete their first Game Session without creating an account.

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Gamebuds</string>
+    <string name="title_activity_main">Gamebuds</string>
+    <string name="package_name">com.gamebuds.app</string>
+    <string name="custom_url_scheme">com.gamebuds.app</string>
+</resources>
