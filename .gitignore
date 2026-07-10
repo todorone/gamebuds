@@ -6,3 +6,4 @@ android/build/
 android/app/build/
 ios/App/App/public/
 ios/App/Pods/
+.idea
