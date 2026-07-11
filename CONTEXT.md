@@ -80,8 +80,12 @@ _Avoid_: Public lobby, matchmaking
 Answers, drawings, and similar Player-created material that exists only for the active Game Session and is deleted afterward.
 _Avoid_: Post, user-generated content library
 
+**Play Gathering**:
+A single occasion on which a Play Group comes together and plays one or more Game Sessions. It is the unit of Social Replay and of Gamebuds' primary retention measure—whether a Play Group returns for a second Gathering.
+_Avoid_: Session (a Gathering may contain several Game Sessions)
+
 **Social Replay**:
-Repeat play driven by a Play Group wanting another Game or organizing another gathering. Gamebuds favors clean session endings and voluntary return over maximizing individual screen time.
+Repeat play driven by a Play Group wanting another Game or organizing another Play Gathering. Gamebuds favors clean session endings and voluntary return over maximizing individual screen time.
 _Avoid_: Infinite engagement, compulsive retention
 
 **Result Card**:
