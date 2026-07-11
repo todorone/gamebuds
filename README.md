@@ -17,8 +17,7 @@ Gamebuds is a pnpm monorepo with two deployable applications:
 
 ```bash
 pnpm install
-pnpm dev                 # Run the Vite client and local Worker together
-pnpm --filter @gamebuds/mobile dev
+pnpm --filter @gamebuds/mobile dev:web
 pnpm --filter @gamebuds/api dev
 ```
 

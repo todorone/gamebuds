@@ -5,7 +5,7 @@ projects live beside the web source so Capacitor continues to resolve `dist/`
 relative to this workspace.
 
 ```bash
-pnpm --filter @gamebuds/mobile dev
+pnpm --filter @gamebuds/mobile dev:web
 pnpm --filter @gamebuds/mobile dev:ios
 pnpm --filter @gamebuds/mobile build
 pnpm --filter @gamebuds/mobile sync

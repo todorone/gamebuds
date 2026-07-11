@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+		"dev:web": "vite",
 		"format": "prettier --write index.html src vite.config.ts tsconfig.json capacitor.config.ts README.md",
 		"format-check": "prettier --check index.html src vite.config.ts tsconfig.json capacitor.config.ts README.md",
 		"lint": "eslint .",

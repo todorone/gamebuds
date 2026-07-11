@@ -8,7 +8,6 @@
 		"node": ">=24"
 	},
 	"scripts": {
-		"dev": "pnpm --parallel --filter @gamebuds/mobile --filter @gamebuds/api dev",
 		"format": "prettier --write . && pnpm --recursive --if-present run format",
 		"format-check": "prettier --check . && pnpm --recursive --if-present run format-check",
 		"lint": "pnpm --recursive --if-present run lint",
