@@ -13,6 +13,7 @@
 		"build": "pnpm types && vite build",
 		"preview": "vite preview",
 		"dev:ios": "pnpm sync && (vite --host 0.0.0.0 --port 5173 & vite_pid=$!; trap 'kill $vite_pid 2>/dev/null || true' EXIT INT TERM; cap run ios --no-sync --live-reload --host localhost --port 5173)",
+		"dev:android": "pnpm sync && (vite --host 0.0.0.0 --port 5173 & vite_pid=$!; trap 'kill $vite_pid 2>/dev/null || true' EXIT INT TERM; cap run android --no-sync --live-reload --host localhost --port 5173 --forwardPorts 5173:5173)",
 		"sync": "pnpm build && cap sync",
 		"ios": "pnpm sync && cap run ios",
 		"android": "pnpm sync && cap run android"
