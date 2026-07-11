@@ -1,6 +1,6 @@
-# Gamesbud
+# Gamebuds
 
-Gamesbud is a catalog of synchronized mobile games for small groups. Each participant plays on their own phone in the same live session.
+Gamebuds is a catalog of synchronized mobile games for small groups. Each participant plays on their own phone in the same live session.
 
 ## Language
 
@@ -25,7 +25,7 @@ A QR code or link that opens the Game Session for an installed Player and requir
 _Avoid_: Guest link
 
 **Co-located Play**:
-A Game Session in which the Play Group is physically together. Gamesbud's launch Games are designed and marketed for this setting, even though their phones communicate through internet-based networking.
+A Game Session in which the Play Group is physically together. Gamebuds' launch Games are designed and marketed for this setting, even though their phones communicate through internet-based networking.
 _Avoid_: Local multiplayer, remote play
 
 **Launch Audience**:
@@ -53,7 +53,7 @@ A Game in which the Play Group pursues a shared goal, preferably through asymmet
 _Avoid_: Solo puzzle played together
 
 **Cooperative-First**:
-Gamesbud's launch strategy in which cooperation is the primary positioning, first Game Session experience, and majority of the MVP Catalog, while light competitive Games provide supporting variety.
+Gamebuds' launch strategy in which cooperation is the primary positioning, first Game Session experience, and majority of the MVP Catalog, while light competitive Games provide supporting variety.
 _Avoid_: Cooperative-only
 
 **Social Interaction**:
@@ -73,7 +73,7 @@ A premium entitlement held by any Player that unlocks the full catalog for the e
 _Avoid_: Host-only payment, per-player paywall
 
 **Private Session**:
-A Game Session accessible only through its Session Invitation. Gamesbud does not match Players publicly or provide friend discovery, direct messaging, or voice chat.
+A Game Session accessible only through its Session Invitation. Gamebuds does not match Players publicly or provide friend discovery, direct messaging, or voice chat.
 _Avoid_: Public lobby, matchmaking
 
 **Ephemeral Play Content**:
@@ -81,9 +81,9 @@ Answers, drawings, and similar Player-created material that exists only for the 
 _Avoid_: Post, user-generated content library
 
 **Social Replay**:
-Repeat play driven by a Play Group wanting another Game or organizing another gathering. Gamesbud favors clean session endings and voluntary return over maximizing individual screen time.
+Repeat play driven by a Play Group wanting another Game or organizing another gathering. Gamebuds favors clean session endings and voluntary return over maximizing individual screen time.
 _Avoid_: Infinite engagement, compulsive retention
 
 **Result Card**:
-A simple, optional post-session image showing the Game, scores or outcome, and a playful challenge. It excludes Ephemeral Play Content and links recipients to install Gamesbud and open that Game.
+A simple, optional post-session image showing the Game, scores or outcome, and a playful challenge. It excludes Ephemeral Play Content and links recipients to install Gamebuds and open that Game.
 _Avoid_: Session recording, social post

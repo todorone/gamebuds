@@ -4,7 +4,7 @@ _Research snapshot: 10 July 2026_
 
 ## Decision this research supports
 
-Gamesbud will remain Cooperative-First. The open decision is how to make that strategy sharp enough to test: which launch promise and cooperative mechanic should lead for co-located groups of three or four friends aged 13–19, with young adults and 13+ Family Play secondary.
+Gamebuds will remain Cooperative-First. The open decision is how to make that strategy sharp enough to test: which launch promise and cooperative mechanic should lead for co-located groups of three or four friends aged 13–19, with young adults and 13+ Family Play secondary.
 
 ## Bottom line
 
@@ -18,7 +18,7 @@ The evidence supports testing this wedge, but not describing it as an empty cate
 
 The strongest initial positioning to test is:
 
-> **For three or four friends already together, Gamesbud turns the phones already in their hands into a quick shared team challenge—no TV, controllers, strangers, or rules lesson.**
+> **For three or four friends already together, Gamebuds turns the phones already in their hands into a quick shared team challenge—no TV, controllers, strangers, or rules lesson.**
 
 “Same room. Same team. Different screens.” is a concise expression of the idea. The product should promise a better shared moment, not shame Players for screen use or present itself as a digital detox.
 
@@ -32,11 +32,11 @@ The strongest initial positioning to test is:
 
 3. **Social play is already a mainstream motivation.** Among US teen Players, 89% played with others in person or online; 47% said games had helped their friendships, 41% said they had helped how they work with others, and about three quarters named spending time with others as a reason to play.[^pew-games] Ofcom found that playing with friends or family was the most common social mode among UK children who played online: 96% did so at least sometimes and 55% did so all or most of the time.[^ofcom]
 
-4. **The beachhead occasion already happens, but its quality is mixed.** Boston Children's Hospital's Digital Wellness Lab surveyed 1,468 US teens aged 13–17 about social gaming. Seventy percent did some same-room two-Player play and 62% some same-room group play during a typical week; 41% and 34%, respectively, did so frequently. In local groups, 58% typically played with offline friends, 55% with siblings, and 15% with parents. Yet only 46% characterized local group play as collaborative and 53% as social.[^digital-wellness] This is unusually direct evidence for the occasion and the unmet need, but it covers all hardware and genres—not Gamesbud's one-phone-per-Player design.
+4. **The beachhead occasion already happens, but its quality is mixed.** Boston Children's Hospital's Digital Wellness Lab surveyed 1,468 US teens aged 13–17 about social gaming. Seventy percent did some same-room two-Player play and 62% some same-room group play during a typical week; 41% and 34%, respectively, did so frequently. In local groups, 58% typically played with offline friends, 55% with siblings, and 15% with parents. Yet only 46% characterized local group play as collaborative and 53% as social.[^digital-wellness] This is unusually direct evidence for the occasion and the unmet need, but it covers all hardware and genres—not Gamebuds' one-phone-per-Player design.
 
 5. **Phones are both connective and intrusive.** Pew found that 74% of teens said social platforms made them feel more connected to friends, while 45% said they spent too much time on social media.[^pew-social] A separate Pew study found that 38% said they spent too much time on their smartphone, while 74% felt happy and 72% peaceful at least sometimes without it.[^pew-screens] Common Sense Media's device telemetry study of roughly 200 US Android users aged 11–17 found a median of 237 notifications and 51 phone pickups on a typical day; participants aged 13+ were more likely to check over 100 times.[^common-sense]
 
-6. **A private, known-group model has a parent-facing benefit.** In Ofcom's 2025–26 study, 64% of parents of children who game were concerned about stranger contact and 60% about bullying by other Players. Nine in ten parents said they set gaming rules.[^ofcom] Gamesbud's Private Session and absence of discovery, direct messaging, and voice chat answer a real parental concern, although this is not yet evidence that teenagers themselves will choose the product for that reason.
+6. **A private, known-group model has a parent-facing benefit.** In Ofcom's 2025–26 study, 64% of parents of children who game were concerned about stranger contact and 60% about bullying by other Players. Nine in ten parents said they set gaming rules.[^ofcom] Gamebuds' Private Session and absence of discovery, direct messaging, and voice chat answer a real parental concern, although this is not yet evidence that teenagers themselves will choose the product for that reason.
 
 7. **Family co-play is a plausible secondary occasion, but it is not the normal teen dyad.** The ESA's 2026 US industry survey reported that 81% of parents who themselves played video games had played with their children; among those parents, 63% cited shared fun, 54% socializing with their children, and 53% family time.[^esa] In the teen-focused Digital Wellness Lab study, however, only 5% named a parent as their typical same-room two-Player partner, compared with 36% naming an offline friend and 32% a sibling; parents appeared in 15% of local groups.[^digital-wellness] Family Play therefore deserves a distinct secondary test rather than an assumed extension of friend play.
 
@@ -45,28 +45,28 @@ The strongest initial positioning to test is:
 - The Digital Wellness Lab establishes that same-room teen gaming occurs, but its self-reported “local” category spans all hardware, genres, and cooperative or competitive modes. It does not establish demand for the exact **separate-phone, synchronized, cooperative** occasion.
 - The strongest audience datasets cover ages 13–17. They do not isolate 18–19-year-olds, the broader young-adult audience, or parent–teen pairs where every Player is 13+.
 - US and UK findings are directionally relevant to an English-speaking launch, not a global market-size estimate.
-- Surveys show existing behavior and attitudes, not willingness to install Gamesbud, start a Game Session during a hangout, or pay for a Group Unlock.
+- Surveys show existing behavior and attitudes, not willingness to install Gamebuds, start a Game Session during a hangout, or pay for a Group Unlock.
 - Loudness is not the same as Social Interaction. A quiet hint, glance, rescue, or shared reaction can satisfy the product goal; observational tests need to code these behaviors rather than reward only shouting.
 
 ## Competitive landscape
 
 ### Direct competitors: separate phones, no shared TV
 
-| Product | Current first-party evidence | What it means for Gamesbud |
+| Product | Current first-party evidence | What it means for Gamebuds |
 | --- | --- | --- |
-| **Wavelength** | The official listings describe a 2–10+ Player, cross-platform game playable in person or remotely. It is fully cooperative and includes synchronous dial movement and reactions. Google Play showed 1M+ downloads, a 4.8 rating from 22.7K reviews, and an update on 25 May 2026; the US App Store showed 58K ratings.[^wavelength] | This is the strongest counterexample to any claim that “cooperative phone party game” is novel. Gamesbud needs to differentiate on the co-located **catalog**, three-to-four-Player occasion, and breadth of interaction—not cooperation alone. |
-| **Spaceteam** | The official App Store page describes a 2–8 Player cooperative party game in which every Player needs a mobile device, receives a different control panel, and must coordinate time-sensitive instructions.[^spaceteam] | It validates asymmetric information plus frantic interdependence, but makes shouting mandatory and remains one thematic game. Gamesbud should test whether it can inspire help and emotion without forcing speech. |
+| **Wavelength** | The official listings describe a 2–10+ Player, cross-platform game playable in person or remotely. It is fully cooperative and includes synchronous dial movement and reactions. Google Play showed 1M+ downloads, a 4.8 rating from 22.7K reviews, and an update on 25 May 2026; the US App Store showed 58K ratings.[^wavelength] | This is the strongest counterexample to any claim that “cooperative phone party game” is novel. Gamebuds needs to differentiate on the co-located **catalog**, three-to-four-Player occasion, and breadth of interaction—not cooperation alone. |
+| **Spaceteam** | The official App Store page describes a 2–8 Player cooperative party game in which every Player needs a mobile device, receives a different control panel, and must coordinate time-sensitive instructions.[^spaceteam] | It validates asymmetric information plus frantic interdependence, but makes shouting mandatory and remains one thematic game. Gamebuds should test whether it can inspire help and emotion without forcing speech. |
 | **DUAL!** | The current Google Play listing describes two phones linked over Wi-Fi or Bluetooth, with competitive and cooperative modes. It showed 10M+ downloads, 148K reviews, and an update on 4 May 2026. Only one Player needs the full unlock for the cooperative modes.[^dual] | It validates physical co-location, cross-screen action, and a payer-unlocks-the-group precedent. Its two-Player limit and action emphasis leave room for a three-to-four-Player cooperative catalog. Download totals are cumulative and do not reveal active or teen usage. |
 
 ### Adjacent products and substitutes
 
 | Product | Current first-party evidence | Boundary exposed |
 | --- | --- | --- |
-| **Plato** | Its Google Play listing described 50+ online multiplayer games integrated with group, room, and voice chat, competition, and meeting new Players. It showed 50M+ downloads, 819K reviews, a 13+ rating, and an update on 30 June 2026.[^plato] | A game catalog and social layer can attract scale, but Plato is chat-first, online, and substantially competitive. Gamesbud's opportunity is the known group already in the room, not another messaging network or public lobby. |
+| **Plato** | Its Google Play listing described 50+ online multiplayer games integrated with group, room, and voice chat, competition, and meeting new Players. It showed 50M+ downloads, 819K reviews, a 13+ rating, and an update on 30 June 2026.[^plato] | A game catalog and social layer can attract scale, but Plato is chat-first, online, and substantially competitive. Gamebuds' opportunity is the known group already in the room, not another messaging network or public lobby. |
 | **Among Us** | Innersloth supports 4–15 Players online or over local Wi-Fi, combining group tasks with hidden adversaries, meetings, persuasion, and voting.[^among-us] | Teen Players already understand phone-enabled social deduction. It is a larger-group, adversarial experience, so “shared goal with no betrayal” can be a meaningful contrast. |
-| **Jackbox** | Only the Host buys and runs the product. Other Players enter a code at jackbox.tv and use phones as controllers, while an in-person group watches a shared Host screen.[^jackbox] | Jackbox minimizes join friction and makes the room, not each phone, the visual center. Gamesbud removes the TV requirement but asks every Player to install; that trade must be tested rather than assumed benign. |
-| **AirConsole** | AirConsole markets 140+ multiplayer games in which smartphones are controllers for one shared screen.[^airconsole] | It shows demand for catalog breadth and phone-as-controller convenience, while leaving “no shared display” as Gamesbud's practical differentiator. |
-| **Netflix Party Games** | Netflix's April 2026 guide presents instantly recognizable games for friends and family, joined by scanning a TV QR code. Phones act as controllers and the TV remains the main display or scoreboard.[^netflix] | Large platforms are actively investing in low-friction co-located party play. Gamesbud cannot win on “party games using phones” broadly; it must win when no TV is available and cooperation is the default. |
+| **Jackbox** | Only the Host buys and runs the product. Other Players enter a code at jackbox.tv and use phones as controllers, while an in-person group watches a shared Host screen.[^jackbox] | Jackbox minimizes join friction and makes the room, not each phone, the visual center. Gamebuds removes the TV requirement but asks every Player to install; that trade must be tested rather than assumed benign. |
+| **AirConsole** | AirConsole markets 140+ multiplayer games in which smartphones are controllers for one shared screen.[^airconsole] | It shows demand for catalog breadth and phone-as-controller convenience, while leaving “no shared display” as Gamebuds' practical differentiator. |
+| **Netflix Party Games** | Netflix's April 2026 guide presents instantly recognizable games for friends and family, joined by scanning a TV QR code. Phones act as controllers and the TV remains the main display or scoreboard.[^netflix] | Large platforms are actively investing in low-friction co-located party play. Gamebuds cannot win on “party games using phones” broadly; it must win when no TV is available and cooperation is the default. |
 
 ### The opportunity shape
 
@@ -86,19 +86,23 @@ Ordered by how quickly they could invalidate a particular launch direction—not
 2. **Every-Player installation is compatible with an effortless 5–20 minute occasion.** Competitors frequently remove per-Player purchase and installation friction. Prototype distribution can mask this risk if the app is preinstalled.
 3. **Three or four is a naturally available Play Group.** The strongest direct products accept two or much larger groups; the beachhead occasion may need strong two-Player scaling without changing its three-to-four-Player emphasis.
 4. **Casual Players feel competent, not exposed.** Teen gaming is broad, but gender and self-identified-gamer differences are large.[^pew-games] The Digital Wellness Lab also found that girls more often described local multiplayer as collaborative, while boys more often described it as competitive.[^digital-wellness] A mechanic that rewards gaming dexterity or public verbal cleverness may narrow the audience; prototype groups should include different gender mixes without treating either finding as destiny.
-5. **Cooperation is enough of a hook without a familiar IP or physical spectacle.** Netflix leans on recognizable games and franchises; DUAL makes linked screens visually magical. Gamesbud needs an immediately legible “show someone” moment.
-6. **A Group Unlock fits the category.** Host- or group-level payment has precedent, but there is no evidence here for Gamesbud's price point or willingness to pay. Monetization should not contaminate the first mechanic test.
+5. **Cooperation is enough of a hook without a familiar IP or physical spectacle.** Netflix leans on recognizable games and franchises; DUAL makes linked screens visually magical. Gamebuds needs an immediately legible “show someone” moment.
+6. **A Group Unlock fits the category.** Host- or group-level payment has precedent, but there is no evidence here for Gamebuds' price point or willingness to pay. Monetization should not contaminate the first mechanic test.
 7. **Teen-friend evidence transfers to Family Play.** Parent co-play exists, but parent–teen Players may prefer a slower, less slang-dependent or dexterity-dependent experience. Treat this as a secondary adaptation test.
 
-## Two prototype hypotheses
+## Four prototype hypotheses
 
-These are contrasting learning vehicles, not final Game concepts. Both should run inside the bootstrapped app, support three or four co-located phones, teach themselves in about a minute, complete in 5–10 minutes, and end cleanly with a neutral choice to replay or stop.
+_Prototype set extended from two to four on 11 July 2026; the market evidence above is unchanged. See ADR [0002](../adr/0002-four-prototype-validation-design.md)._
+
+These are contrasting learning vehicles, not final Game concepts. The set was extended from two to four—three cooperative plus one light competitive—so the validation phase can rank a real field of mechanics rather than compare a single pair. Each should run inside the bootstrapped app, support two to four co-located phones, teach itself in about a minute, complete in 5–10 minutes, and end cleanly with a neutral choice to replay or stop.
+
+The three cooperative prototypes (Split Signal, Common Pulse, Relay Canvas) compete for the two Cooperative MVP Catalog slots—the top two of three by observed group behavior advance. The light competitive prototype (Crowd Read) is a separate probe for the single competitive slot, scored on its own gate. Prototypes A and B are the original pair; C and D are the additions.
 
 ### Prototype A: Split Signal — asymmetric inference
 
 **Frame:** A shared system is in danger. Each Player sees a different fragment of its state and controls one limited action. The Play Group must combine partial clues to choose a sequence of repairs. Lightweight on-screen pings provide a nonverbal path, so talking helps but is never a hard rule.
 
-**Why this contrast:** Wavelength and Spaceteam show that private information can generate coordination, but one centers conversation and the other mandates shouting.[^wavelength][^spaceteam] Split Signal tests whether Gamesbud can create hint-sharing and mutual help without copying either constraint.
+**Why this contrast:** Wavelength and Spaceteam show that private information can generate coordination, but one centers conversation and the other mandates shouting.[^wavelength][^spaceteam] Split Signal tests whether Gamebuds can create hint-sharing and mutual help without copying either constraint.
 
 **Hypothesis:** Asymmetric information will cause Players to volunteer clues, ask one another for help, look up from their own screen, and celebrate a shared deduction more reliably than a purely action-based challenge.
 
@@ -114,9 +118,29 @@ These are contrasting learning vehicles, not final Game concepts. Both should ru
 
 **Failure pattern that triggers a partial pivot:** Players stare continuously at their own controls, cannot perceive teammate contributions, or attribute failure to lag or unclear causality. If the shared state is not socially legible without a TV, real-time action should not lead the first Game Session.
 
+### Prototype C: Relay Canvas — expressive co-creation
+
+**Frame:** The Play Group builds one shared artifact—a drawing, a scene, a chain—by taking quick timed turns, each Player seeing what came before and adding to it on their own phone. The payoff is the collective reveal and the reactions to it. Speech is optional; the shared canvas carries the interaction.
+
+**Why this contrast:** Split Signal tests cognitive inference and Common Pulse tests motor timing. Relay Canvas occupies a third axis—shared authorship and creativity—on a warmer, more playful register, widening the emotional range the cooperative catalog can cover. It rides the already-sanctioned youth-safe surface (constrained text and in-app drawing as Ephemeral Play Content), so it adds no new permission or privacy risk.
+
+**Hypothesis:** Co-creation will produce laughter, "let me add to that," reactions directed at teammates' contributions, and voluntary replay through a different, warmer social mood than the two problem-solving prototypes.
+
+**Failure pattern that triggers a partial pivot:** Players build in parallel without looking at or reacting to one another's contributions, the reveal lands flat, or the turn structure feels like waiting rather than collaborating. If the shared artifact does not visibly connect Players, expressive co-creation should not take a cooperative Catalog slot.
+
+### Prototype D: Crowd Read — light competitive social prediction
+
+**Frame:** Everyone answers a light prompt at once; then each Player privately predicts how the group as a whole will land, scoring for reading their friends best, with the reveal rotating. It is individually scored with a winner, but the skill is social attunement rather than reflexes or public verbal performance.
+
+**Why this contrast:** This is the one deliberately competitive prototype, present to probe the Catalog's single light competitive slot. Crowd Read tests whether competition can add variety without creating exclusion or rewarding prior gaming skill—the central risk for a competitive Game inside a Cooperative-First product. Reflex races (which reward dexterity) and hidden-traitor bluffing (the research positions Gamebuds against betrayal, unlike Among Us) were rejected for that reason.
+
+**Hypothesis:** A competition scored on reading the group—not on dexterity or wit-on-display—will feel warm rather than exclusionary, produce rematch desire, and reinforce rather than fight the "read your friends" positioning.
+
+**Failure pattern that triggers a partial pivot:** Outcomes track prior gaming skill or knowledge, a Player is put on the spot or stranded, or the mechanic reads as adversarial in a way that clashes with a cooperative first Game Session. Crowd Read is scored on its own pass/fail gate, not ranked against the cooperative prototypes.
+
 ## Observation plan
 
-Use at least four independent teen friend groups and let every group try both prototypes in counterbalanced order. A small convenience sample cannot validate a market, but it can reject weak mechanics and sharpen the next test.
+With four prototypes, a within-subjects design where every group plays all four would run 45–60 minutes—longer than the 5–20 minute occasion the product is designed for—and fatigue would suppress the very Social Interaction signal being measured. Use an incomplete-block design instead. Recruit about six independent teen friend groups. Each group plays **two** of the three cooperative prototypes (about 25 minutes) plus **Crowd Read** as a short competitive probe. Rotate which cooperative pair each group receives so all three pairs (Split Signal + Common Pulse, Split Signal + Relay Canvas, Common Pulse + Relay Canvas) are each directly compared by at least two groups; every cooperative prototype is then observed by four of the six groups, and every group still makes a direct within-group comparison. Counterbalance order within each group. A small convenience sample cannot validate a market, but it can reject weak mechanics and sharpen the next test.
 
 Record behavior before asking for opinions:
 
@@ -130,13 +154,23 @@ Record behavior before asking for opinions:
 | **Social Replay** | After a clean ending, offer “same Game again,” “other Game,” or “stop” without encouragement. Record the choice and who initiates it. |
 | **Join friction** | Separately time invitation, installation, launch, and joining. Record abandonment and help required. Do not fold this into the mechanic score. |
 
-Pre-register provisional selection rules so enthusiasm after a lively session does not move the goalposts:
+Pre-register the gate so enthusiasm after a lively session does not move the goalposts. It has two layers for the cooperative prototypes plus a separate competitive gate.
 
-- At least three of four teen groups show two or more categories of unprompted Social Interaction within the first two minutes of active play.
-- At least three of four complete a first round without moderator help after onboarding.
-- No Player is consistently reduced to watching another Player operate or decide.
-- At least three of four groups voluntarily choose another round or the other prototype.
-- The winning prototype must outperform the other on group behavior, not only on post-session ratings.
+**Absolute bar.** Each cooperative prototype, in at least three of its four groups, must:
+
+- show two or more categories of unprompted Social Interaction within the first two minutes of active play;
+- complete a first round without moderator help after onboarding;
+- leave no Player consistently reduced to watching another Player operate or decide; and
+- have at least three of four groups voluntarily choose another round.
+
+**Selection.** Of the cooperative prototypes that clear the absolute bar, the top two by observed group behavior (not post-session ratings) become the two Cooperative MVP Games:
+
+- Three clear → take the top two; bank the third as the first catalog-expansion candidate.
+- Two clear → those two lead.
+- One clears → it leads the first Game Session; re-prototype the second cooperative slot rather than shipping a mechanic that failed its gate.
+- None clear → a deeper pivot: the cooperative-mechanic thesis is wrong, not merely three implementations.
+
+**Competitive gate.** Crowd Read is scored separately, pass/fail, for the single competitive slot. It advances only if it teaches in about a minute, at least three of its groups want a rematch, no Player is stranded or excluded, and outcomes do not track prior gaming skill. If it fails, that slot re-prototypes; it never borrows a cooperative slot.
 
 Run parent–teen and young-adult sessions only as secondary probes after the teen-friend comparison. Do not let an easier-to-recruit Family Play pair substitute for the beachhead evidence.
 
@@ -144,9 +178,13 @@ Run parent–teen and young-adult sessions only as secondary probes after the te
 
 | Observed result | Partial pivot within Cooperative-First |
 | --- | --- |
-| Split Signal clearly wins | Lead with “read your friends / solve it together”; bias the two cooperative MVP Games toward asymmetric information, with one lighter action Game for variety. |
-| Common Pulse clearly wins | Lead with “sync up / save it together”; bias toward short real-time systems and make teammate causality a first-class visual language. |
-| Both create interaction, but only after long setup | Keep the mechanic, shrink the first round, expose a playable action before explanation, and make the Host-led join flow the next decision. |
+| Split Signal ranks highest | Lead with “read your friends / solve it together”; bias the two cooperative MVP Games toward asymmetric information, with one lighter action Game for variety. |
+| Common Pulse ranks highest | Lead with “sync up / save it together”; bias toward short real-time systems and make teammate causality a first-class visual language. |
+| Relay Canvas ranks highest | Lead with “make something together”; bias toward expressive co-creation and treat the reveal-and-react beat as a first-class part of the loop. |
+| Two cooperative prototypes clear the bar close together | Ship both as the two cooperative slots and let their contrasting moods define the catalog’s range; use the observed difference to order the first Game Session. |
+| Crowd Read clears its competitive gate | Keep it as the single light competitive slot for variety, framed around reading the group rather than dexterity or wit-on-display. |
+| Crowd Read creates exclusion or tracks prior skill | Drop or re-prototype the competitive slot; do not let it dilute the Cooperative-First first Game Session. A weak competitive probe does not change the cooperative selection. |
+| One or more cooperative prototypes create interaction, but only after long setup | Keep the mechanic, shrink the first round, expose a playable action before explanation, and make the Host-led join flow the next decision. |
 | Two-Player parent–teen sessions are stronger than teen groups | Add robust two-Player scaling and test Family Play messaging separately; do not replace the teen beachhead from one small sample. |
 | Interaction is strong but installation fails | Pivot acquisition and invitation: Host-driven QR/link, deferred account creation, tiny first download, and Group Unlock. Do not misdiagnose this as a cooperative-mechanic failure. |
 | Verbal confidence splits the audience | Keep cooperation but favor pings, complementary controls, and visible rescues over public performance or mandatory speech. |
