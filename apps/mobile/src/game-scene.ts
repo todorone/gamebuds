@@ -32,11 +32,16 @@ export class GameScene extends Phaser.Scene {
 			.setScrollFactor(0);
 
 		this.promptLabel = this.add
-			.text(this.scale.width / 2, this.scale.height - 48, 'Tap the glowing bud', {
-				color: '#e2e8f0',
-				fontFamily: 'system-ui, sans-serif',
-				fontSize: '18px',
-			})
+			.text(
+				this.scale.width / 2,
+				this.scale.height - 48,
+				'Tap the glowing bud',
+				{
+					color: '#e2e8f0',
+					fontFamily: 'system-ui, sans-serif',
+					fontSize: '18px',
+				},
+			)
 			.setOrigin(0.5);
 
 		this.scale.on(Phaser.Scale.Events.RESIZE, this.layout, this);
@@ -51,11 +56,19 @@ export class GameScene extends Phaser.Scene {
 		this.target?.destroy();
 
 		const margin = TARGET_RADIUS + 20;
-		const x = Phaser.Math.Between(margin, Math.max(margin, this.scale.width - margin));
-		const y = Phaser.Math.Between(130, Math.max(130, this.scale.height - margin - 80));
+		const x = Phaser.Math.Between(
+			margin,
+			Math.max(margin, this.scale.width - margin),
+		);
+		const y = Phaser.Math.Between(
+			130,
+			Math.max(130, this.scale.height - margin - 80),
+		);
 		const color = Phaser.Utils.Array.GetRandom(TARGET_COLORS);
 
-		this.target = this.add.circle(x, y, TARGET_RADIUS, color).setInteractive({ useHandCursor: true });
+		this.target = this.add
+			.circle(x, y, TARGET_RADIUS, color)
+			.setInteractive({ useHandCursor: true });
 		this.tweens.add({
 			targets: this.target,
 			scale: { from: 0.85, to: 1.12 },

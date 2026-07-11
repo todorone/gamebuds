@@ -1,0 +1,14 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "gamebuds-api",
+	"main": "src/worker.ts",
+	"compatibility_date": "2025-07-01",
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "gamebuds-local",
+			"database_id": "local",
+			"migrations_dir": "drizzle/migrations",
+		},
+	],
+}

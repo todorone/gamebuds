@@ -1,25 +1,28 @@
 {
-  "name": "gamebuds",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "sync": "pnpm build && cap sync",
-    "ios": "pnpm sync && cap run ios",
-    "android": "pnpm sync && cap run android"
-  },
-  "dependencies": {
-    "@capacitor/android": "8.4.1",
-    "@capacitor/core": "8.4.1",
-    "@capacitor/ios": "8.4.1",
-    "phaser": "4.2.1"
-  },
-  "devDependencies": {
-    "@capacitor/cli": "8.4.1",
-    "typescript": "6.0.3",
-    "vite": "8.1.4"
-  }
+	"name": "gamebuds",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@10.33.2",
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"dev": "pnpm --parallel --filter @gamebuds/mobile --filter @gamebuds/api dev",
+		"format": "prettier --write . && pnpm --recursive --if-present run format",
+		"format-check": "prettier --check . && pnpm --recursive --if-present run format-check",
+		"lint": "pnpm --recursive --if-present run lint",
+		"types": "pnpm --recursive --if-present run types",
+		"test": "pnpm --recursive --if-present run test",
+		"build": "pnpm --recursive --if-present run build",
+		"checks": "pnpm format-check && pnpm lint && pnpm types && pnpm test && pnpm build"
+	},
+	"devDependencies": {
+		"@eslint/js": "10.0.1",
+		"eslint": "10.7.0",
+		"prettier": "3.9.5",
+		"typescript": "6.0.3",
+		"typescript-eslint": "8.63.0",
+		"vitest": "4.1.10"
+	}
 }

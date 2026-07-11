@@ -1,6 +1,9 @@
 # Gamebuds
 
-A TypeScript Phaser game packaged for iOS and Android with Capacitor.
+Gamebuds is a pnpm monorepo with two deployable applications:
+
+- `apps/mobile` — the Capacitor, Vite, Phaser, iOS, and Android mobile client.
+- `apps/api` — the Hono Cloudflare Worker API.
 
 ## Requirements
 
@@ -8,16 +11,57 @@ A TypeScript Phaser game packaged for iOS and Android with Capacitor.
 - pnpm 10+
 - Xcode for iOS development
 - Android Studio for Android development
+- Wrangler authentication only for remote Cloudflare operations
 
-## Commands
+## Install and run
 
 ```bash
 pnpm install
-pnpm dev       # Run the browser version
-pnpm build     # Type-check and create dist/
-pnpm sync      # Build and copy the web game into both native projects
-pnpm ios       # Sync and run in an available iOS Simulator
-pnpm android   # Sync and run on an Android emulator/device
+pnpm dev                 # Run the Vite client and local Worker together
+pnpm --filter @gamebuds/mobile dev
+pnpm --filter @gamebuds/api dev
 ```
 
-The game entry point is `src/main.ts`; the initial Phaser scene is in `src/game-scene.ts`.
+The browser client uses `http://localhost:8787` as its API origin by default.
+Copy `apps/mobile/.env.example` to `apps/mobile/.env.local` to override
+`VITE_API_URL`. Installed and deployed clients must use an HTTPS Worker URL.
+
+## Quality checks
+
+```bash
+pnpm checks              # Format, lint, types, tests, and builds
+pnpm format
+pnpm lint
+pnpm types
+pnpm test
+pnpm build
+```
+
+The root scripts use pnpm recursive execution; no task-orchestration layer is
+required for the two workspaces.
+
+## Client commands
+
+```bash
+pnpm --filter @gamebuds/mobile sync
+pnpm --filter @gamebuds/mobile ios
+pnpm --filter @gamebuds/mobile android
+```
+
+Native sync and iOS/Android builds are intentionally not part of the portable
+GitHub Actions checks.
+
+## API and local D1
+
+```bash
+pnpm --filter @gamebuds/api db:generate
+pnpm --filter @gamebuds/api db:migrate
+```
+
+These commands generate Drizzle migrations and apply them to Wrangler's local
+D1 database. Remote D1 provisioning, identifiers, and migrations are deferred
+until deployment configuration is designed.
+
+The initial API contract is `GET /health`. Its typed client boundary is
+available only from `@gamebuds/api/client`; Worker, D1, Drizzle, and future
+authentication internals remain private to the API workspace.

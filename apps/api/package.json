@@ -1,0 +1,32 @@
+{
+	"name": "@gamebuds/api",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./client": {
+			"types": "./src/client.ts",
+			"import": "./src/client.ts"
+		}
+	},
+	"scripts": {
+		"dev": "wrangler dev",
+		"format": "prettier --write src tests drizzle.config.ts wrangler.jsonc README.md",
+		"format-check": "prettier --check src tests drizzle.config.ts wrangler.jsonc README.md",
+		"lint": "eslint .",
+		"types": "tsc --noEmit",
+		"test": "vitest run",
+		"build": "wrangler deploy --dry-run",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "wrangler d1 migrations apply DB --local"
+	},
+	"dependencies": {
+		"drizzle-orm": "0.45.2",
+		"hono": "4.12.29"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "5.20260711.1",
+		"drizzle-kit": "0.31.10",
+		"wrangler": "4.110.0"
+	}
+}

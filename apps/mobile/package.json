@@ -1,0 +1,32 @@
+{
+	"name": "@gamebuds/mobile",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"format": "prettier --write index.html src vite.config.ts tsconfig.json capacitor.config.ts README.md",
+		"format-check": "prettier --check index.html src vite.config.ts tsconfig.json capacitor.config.ts README.md",
+		"lint": "eslint .",
+		"types": "tsc --noEmit",
+		"test": "vitest run",
+		"build": "pnpm types && vite build",
+		"preview": "vite preview",
+		"sync": "pnpm build && cap sync",
+		"ios": "pnpm sync && cap run ios",
+		"android": "pnpm sync && cap run android"
+	},
+	"dependencies": {
+		"@capacitor/android": "8.4.1",
+		"@capacitor/core": "8.4.1",
+		"@capacitor/ios": "8.4.1",
+		"@gamebuds/api": "workspace:*",
+		"phaser": "4.2.1"
+	},
+	"devDependencies": {
+		"@capacitor/cli": "8.4.1",
+		"typescript": "6.0.3",
+		"vite": "8.1.4",
+		"vitest": "4.1.10"
+	}
+}

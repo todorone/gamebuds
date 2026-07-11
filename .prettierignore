@@ -1,0 +1,9 @@
+node_modules
+dist
+apps/mobile/android
+apps/mobile/ios
+apps/api/drizzle/migrations/meta
+pnpm-lock.yaml
+docs/agents/triage-labels.md
+docs/research/cooperative-first-market-opportunity.md
+docs/research/ethical-youth-safe-product-constraints.md
