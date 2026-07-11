@@ -15,7 +15,7 @@ export class GameScene extends Phaser.Scene {
 
 	public create(): void {
 		this.add
-			.text(24, 32, 'GAMEBUDS2', {
+			.text(24, 32, 'GAMEBUDS', {
 				color: '#f9fafb',
 				fontFamily: 'system-ui, sans-serif',
 				fontSize: '24px',
