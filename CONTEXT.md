@@ -44,6 +44,10 @@ _Avoid_: Children's game
 The initial public catalog of three polished Games: two Cooperative Games and one light competitive Game. Expansion toward six to eight Games begins only after the MVP demonstrates healthy retention.
 _Avoid_: Launch Catalog, game library
 
+**Prototype**:
+A throwaway, playable learning vehicle built inside the existing app scaffold to test whether a specific mechanic reliably inspires Social Interaction with real Play Groups. A Prototype is an experiment that informs which mechanics the MVP Catalog adopts; it is not itself a Game shipped in the catalog.
+_Avoid_: MVP Game, catalog Game, demo
+
 **Cooperative Game**:
 A Game in which the Play Group pursues a shared goal, preferably through asymmetric roles or information that makes Players depend on one another.
 _Avoid_: Solo puzzle played together
