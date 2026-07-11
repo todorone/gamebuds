@@ -1,8 +1,14 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "gamebuds-api",
+	"name": "gamebuds",
 	"main": "src/worker.ts",
 	"compatibility_date": "2025-07-01",
+	"routes": [
+		{
+			"pattern": "app.game-buds.com",
+			"custom_domain": true
+		}
+	],
 	"d1_databases": [
 		{
 			"binding": "DB",
