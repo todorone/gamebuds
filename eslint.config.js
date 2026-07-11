@@ -8,6 +8,7 @@ export default tseslint.config(
 			'.claude/**',
 			'**/dist/**',
 			'**/node_modules/**',
+			'**/.wrangler/**',
 			'apps/mobile/android/**',
 			'apps/mobile/ios/**',
 		],

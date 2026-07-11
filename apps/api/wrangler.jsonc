@@ -3,6 +3,9 @@
 	"name": "gamebuds",
 	"main": "src/worker.ts",
 	"compatibility_date": "2025-07-01",
+	"vars": {
+		"CORS_ORIGINS": "http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173,http://127.0.0.1:4173,capacitor://localhost,http://localhost,https://localhost,https://game-buds.com,https://www.game-buds.com",
+	},
 	"routes": [
 		{
 			"pattern": "app.game-buds.com",

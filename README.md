@@ -23,7 +23,9 @@ pnpm --filter @gamebuds/api dev
 
 The browser client uses `http://localhost:8787` as its API origin by default.
 Copy `apps/mobile/.env.example` to `apps/mobile/.env.local` to override
-`VITE_API_URL`. Installed and deployed clients must use an HTTPS Worker URL.
+`VITE_API_URL`. The committed remote profile points to
+`https://app.game-buds.com`; it is safe for browser and installed-client
+testing.
 
 ## Quality checks
 
@@ -45,10 +47,18 @@ required for the two workspaces.
 pnpm --filter @gamebuds/mobile sync
 pnpm --filter @gamebuds/mobile ios
 pnpm --filter @gamebuds/mobile android
+pnpm --filter @gamebuds/mobile dev:web:remote
+pnpm --filter @gamebuds/mobile dev:ios:remote
+pnpm --filter @gamebuds/mobile ios:remote
 ```
 
 Native sync and iOS/Android builds are intentionally not part of the portable
 GitHub Actions checks.
+
+`dev:web:remote` starts the Vite client against the deployed API.
+`dev:ios:remote` does the same with iOS live reload; `ios:remote` builds the
+remote configuration into the native bundle and launches it without live
+reload.
 
 ## API and local D1
 
@@ -58,8 +68,18 @@ pnpm --filter @gamebuds/api db:migrate
 ```
 
 These commands generate Drizzle migrations and apply them to Wrangler's local
-D1 database. Remote D1 provisioning, identifiers, and migrations are deferred
-until deployment configuration is designed.
+D1 database. The deployed Worker uses the `gamebuds` D1 database and its API
+is available at `https://app.game-buds.com`.
+
+```bash
+pnpm --filter @gamebuds/api run deploy
+pnpm --filter @gamebuds/api db:migrate:remote
+```
+
+Deploy publishes the Worker and its exact CORS allowlist, including the
+production game-buds.com origins, localhost browser development, and the
+Capacitor iOS WebView origin. Run the remote migration command after adding a
+new D1 migration.
 
 The initial API contract is `GET /health`. Its typed client boundary is
 available only from `@gamebuds/api/client`; Worker, D1, Drizzle, and future

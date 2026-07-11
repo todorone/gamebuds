@@ -7,10 +7,15 @@ relative to this workspace.
 ```bash
 pnpm --filter @gamebuds/mobile dev:web
 pnpm --filter @gamebuds/mobile dev:ios
+pnpm --filter @gamebuds/mobile dev:web:remote
+pnpm --filter @gamebuds/mobile dev:ios:remote
 pnpm --filter @gamebuds/mobile dev:android
 pnpm --filter @gamebuds/mobile build
+pnpm --filter @gamebuds/mobile build:remote
 pnpm --filter @gamebuds/mobile sync
+pnpm --filter @gamebuds/mobile sync:remote
 pnpm --filter @gamebuds/mobile ios
+pnpm --filter @gamebuds/mobile ios:remote
 pnpm --filter @gamebuds/mobile android
 ```
 
@@ -23,9 +28,13 @@ is needed.
 or connected device.
 
 Set `VITE_API_URL` in `.env.local` when the API is not at the local default.
-Use an HTTPS URL for installed and deployed clients. The Phaser entry point
-currently runs the throwaway Split Signal prototype for issue #8. Start the
-API separately, then open the web client at:
+Use an HTTPS URL for installed and deployed clients. The committed `.env.remote`
+profile points to `https://app.game-buds.com`, and every `*:remote` command
+uses it. `dev:web:remote` runs a browser client against that API;
+`dev:ios:remote` uses it with iOS live reload; `ios:remote` embeds it in the
+native build. The Phaser entry point currently runs the throwaway Split Signal
+prototype for issue #8. Start the API separately for local development, then
+open the web client at:
 
 ```text
 http://localhost:5173/?host=1&name=Host
