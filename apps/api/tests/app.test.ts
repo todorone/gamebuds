@@ -36,6 +36,26 @@ describe('API', () => {
 		);
 	});
 
+	it('allows any localhost port for local Vite preflight requests', async () => {
+		const response = await app.request(
+			'/prototype/split-signal/sessions',
+			{
+				method: 'OPTIONS',
+				headers: {
+					Origin: 'http://localhost:5174',
+					'Access-Control-Request-Method': 'POST',
+					'Access-Control-Request-Headers': 'content-type',
+				},
+			},
+			env,
+		);
+
+		expect(response.status).toBe(204);
+		expect(response.headers.get('Access-Control-Allow-Origin')).toBe(
+			'http://localhost:5174',
+		);
+	});
+
 	it('rejects origins outside the allowlist', async () => {
 		const response = await app.request(
 			'/health',
@@ -62,5 +82,78 @@ describe('API', () => {
 		expect(response.headers.get('Access-Control-Allow-Origin')).toBe(
 			'https://staging.example',
 		);
+	});
+
+	it('allows a celebration ping after the Game Session completes', async () => {
+		const jsonHeaders = { 'Content-Type': 'application/json' };
+		const createResponse = await app.request(
+			'/prototype/split-signal/sessions',
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ name: 'Host' }),
+			},
+			env,
+		);
+		const created = (await createResponse.json()) as {
+			playerId: string;
+			state: { code: string };
+		};
+		const joinResponse = await app.request(
+			`/prototype/split-signal/sessions/${created.state.code}/players`,
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ name: 'Buddy' }),
+			},
+			env,
+		);
+		const joined = (await joinResponse.json()) as { playerId: string };
+		const actionPath = `/prototype/split-signal/sessions/${created.state.code}/actions`;
+
+		await app.request(
+			actionPath,
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ playerId: created.playerId, type: 'start' }),
+			},
+			env,
+		);
+
+		let progress = 0;
+		for (let attempt = 0; attempt < 6 && progress < 2; attempt += 1) {
+			for (const playerId of [created.playerId, joined.playerId]) {
+				const repairResponse = await app.request(
+					actionPath,
+					{
+						method: 'POST',
+						headers: jsonHeaders,
+						body: JSON.stringify({ playerId, type: 'repair' }),
+					},
+					env,
+				);
+				const repaired = (await repairResponse.json()) as {
+					state: { progress: string[] };
+				};
+				if (repaired.state.progress.length > progress) {
+					progress = repaired.state.progress.length;
+					break;
+				}
+			}
+		}
+
+		expect(progress).toBe(2);
+		const pingResponse = await app.request(
+			actionPath,
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ playerId: created.playerId, type: 'ping' }),
+			},
+			env,
+		);
+
+		expect(pingResponse.status).toBe(200);
 	});
 });

@@ -20,5 +20,14 @@ is needed.
 
 Set `VITE_API_URL` in `.env.local` when the API is not at the local default.
 Use an HTTPS URL for installed and deployed clients. The Phaser entry point
-does not make a visible API request yet; the typed API client is prepared for
-the Session Identity and Game Session work that follows.
+currently runs the throwaway Split Signal prototype for issue #8. Start the
+API separately, then open the web client at:
+
+```text
+http://localhost:5173/?host=1&name=Host
+```
+
+Share the room code shown in the prototype with two to four Players. Joiners
+use `?room=ROOMCODE&name=Player`; `variant=A`, `variant=B`, and `variant=C`
+switch the three disposable layouts. The relay is intentionally in-memory and
+is not production networking.

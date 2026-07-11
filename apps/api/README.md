@@ -32,3 +32,7 @@ migrations are out of scope.
 
 The only client-safe import is `@gamebuds/api/client`. The Worker entry point,
 D1 binding, Drizzle schema, and authentication internals are API-private.
+
+The `/prototype/split-signal` routes are a disposable, in-memory relay for
+issue #8's Stage A game experiment. They are deliberately outside the durable
+API design: no auth, D1, or production WebRTC behavior is provided here.
