@@ -42,3 +42,7 @@ export interface SplitSignalResponse {
 export interface SplitSignalJoinResponse extends SplitSignalResponse {
 	playerId: string;
 }
+
+export interface SplitSignalLogoutResponse {
+	loggedOut: true;
+}

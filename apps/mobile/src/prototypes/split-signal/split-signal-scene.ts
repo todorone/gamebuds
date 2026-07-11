@@ -4,6 +4,7 @@ import {
 	createSplitSignalSession,
 	getSplitSignalState,
 	joinSplitSignalSession,
+	logoutSplitSignalSession,
 	sendSplitSignalAction,
 } from './relay';
 import type { SplitSignalNodeId, SplitSignalState } from './types';
@@ -176,6 +177,44 @@ export class SplitSignalScene extends Phaser.Scene {
 				error instanceof Error ? error.message : 'Action failed.';
 			this.redraw();
 		}
+	}
+
+	private async logout(): Promise<void> {
+		if (!this.roomCode || !this.playerId) {
+			return;
+		}
+
+		try {
+			await logoutSplitSignalSession(this.roomCode, this.playerId);
+			if (this.pollTimer) {
+				window.clearInterval(this.pollTimer);
+				this.pollTimer = undefined;
+			}
+			this.roomCode = undefined;
+			this.playerId = undefined;
+			this.state = undefined;
+			this.errorMessage = undefined;
+			this.clearSessionUrl();
+			this.redraw();
+		} catch (error) {
+			this.errorMessage =
+				error instanceof Error ? error.message : 'Could not log out.';
+			this.redraw();
+		}
+	}
+
+	private clearSessionUrl(): void {
+		const params = this.getParams();
+		params.delete('room');
+		params.delete('player');
+		params.delete('host');
+		params.delete('name');
+		const query = params.toString();
+		window.history.replaceState(
+			{},
+			'',
+			`${window.location.pathname}${query ? `?${query}` : ''}`,
+		);
 	}
 
 	private drawLanding(): void {
@@ -557,11 +596,20 @@ export class SplitSignalScene extends Phaser.Scene {
 			this.makeButton(
 				x + 20,
 				y + 86,
-				width - 40,
+				width * 0.48,
 				46,
 				'Send a celebration ping',
 				() => void this.sendAction('ping'),
 				0x7c3aed,
+			);
+			this.makeButton(
+				x + width * 0.52,
+				y + 86,
+				width * 0.48 - 20,
+				46,
+				'Finish & log out',
+				() => void this.logout(),
+				0x2563eb,
 			);
 			return;
 		}

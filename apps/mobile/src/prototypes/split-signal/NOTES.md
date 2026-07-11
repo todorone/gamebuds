@@ -34,4 +34,9 @@ or delete the prototype:
 - failure modes, especially silent button scanning, coordinator dominance,
   and a flat or confusing ending.
 
+The completed-session affordance is `Finish & log out`: it removes the Player
+from the disposable relay and returns that device to the landing screen. A
+Player cannot leave through this control until the repair chain is complete, so
+the prototype still preserves the cooperative dependency during play.
+
 Decision: pending observed Play Groups.

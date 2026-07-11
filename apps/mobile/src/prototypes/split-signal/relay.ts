@@ -1,5 +1,6 @@
 import type {
 	SplitSignalJoinResponse,
+	SplitSignalLogoutResponse,
 	SplitSignalResponse,
 	SplitSignalState,
 } from './types';
@@ -66,4 +67,17 @@ export async function sendSplitSignalAction(
 		},
 	);
 	return response.state;
+}
+
+export async function logoutSplitSignalSession(
+	code: string,
+	playerId: string,
+): Promise<void> {
+	await request<SplitSignalLogoutResponse>(
+		`/sessions/${encodeURIComponent(code)}/actions`,
+		{
+			method: 'POST',
+			body: JSON.stringify({ playerId, type: 'logout' }),
+		},
+	);
 }

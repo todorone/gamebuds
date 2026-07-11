@@ -156,4 +156,98 @@ describe('API', () => {
 
 		expect(pingResponse.status).toBe(200);
 	});
+
+	it('lets a Player finish and log out after the Game Session completes', async () => {
+		const jsonHeaders = { 'Content-Type': 'application/json' };
+		const createResponse = await app.request(
+			'/prototype/split-signal/sessions',
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ name: 'Host' }),
+			},
+			env,
+		);
+		const created = (await createResponse.json()) as {
+			playerId: string;
+			state: { code: string };
+		};
+		const joinResponse = await app.request(
+			`/prototype/split-signal/sessions/${created.state.code}/players`,
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ name: 'Buddy' }),
+			},
+			env,
+		);
+		const joined = (await joinResponse.json()) as { playerId: string };
+		const actionPath = `/prototype/split-signal/sessions/${created.state.code}/actions`;
+
+		await app.request(
+			actionPath,
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ playerId: created.playerId, type: 'start' }),
+			},
+			env,
+		);
+		let progress = 0;
+		for (let attempt = 0; attempt < 6 && progress < 2; attempt += 1) {
+			for (const playerId of [created.playerId, joined.playerId]) {
+				const repairResponse = await app.request(
+					actionPath,
+					{
+						method: 'POST',
+						headers: jsonHeaders,
+						body: JSON.stringify({ playerId, type: 'repair' }),
+					},
+					env,
+				);
+				const repaired = (await repairResponse.json()) as {
+					state: { progress: string[] };
+				};
+				if (repaired.state.progress.length > progress) {
+					progress = repaired.state.progress.length;
+					break;
+				}
+			}
+		}
+		expect(progress).toBe(2);
+
+		const logoutResponse = await app.request(
+			actionPath,
+			{
+				method: 'POST',
+				headers: jsonHeaders,
+				body: JSON.stringify({ playerId: joined.playerId, type: 'logout' }),
+			},
+			env,
+		);
+
+		expect(logoutResponse.status).toBe(200);
+		expect(await logoutResponse.json()).toEqual({ loggedOut: true });
+
+		const loggedOutStateResponse = await app.request(
+			`/prototype/split-signal/sessions/${created.state.code}?playerId=${joined.playerId}`,
+			undefined,
+			env,
+		);
+		expect(loggedOutStateResponse.status).toBe(401);
+
+		const hostStateResponse = await app.request(
+			`/prototype/split-signal/sessions/${created.state.code}?playerId=${created.playerId}`,
+			undefined,
+			env,
+		);
+		const hostState = (await hostStateResponse.json()) as {
+			state: {
+				players: Array<{ id: string }>;
+				events: Array<{ message: string }>;
+			};
+		};
+		expect(hostState.state.players).toHaveLength(1);
+		expect(hostState.state.events.at(-1)?.message).toContain('logged out');
+	});
 });

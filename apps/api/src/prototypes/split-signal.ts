@@ -243,7 +243,7 @@ const routes = new Hono<AppEnv>()
 
 		const body = await context.req.json<{
 			playerId?: string;
-			type?: 'start' | 'ping' | 'repair';
+			type?: 'start' | 'ping' | 'repair' | 'logout';
 		}>();
 		const player = body.playerId
 			? getPlayer(session, body.playerId)
@@ -277,6 +277,30 @@ const routes = new Hono<AppEnv>()
 				player.id,
 			);
 			return context.json({ state: serialize(session, player.id) });
+		}
+
+		if (body.type === 'logout') {
+			if (session.phase !== 'complete') {
+				return context.json(
+					{ error: 'Complete the Game Session before logging out' },
+					409,
+				);
+			}
+
+			addEvent(
+				session,
+				'system',
+				`${player.name} logged out of the Game Session.`,
+				player.id,
+			);
+			session.players = session.players.filter(
+				(member) => member.id !== player.id,
+			);
+			if (session.players.length === 0) {
+				sessions.delete(code);
+			}
+
+			return context.json({ loggedOut: true as const });
 		}
 
 		if (session.phase !== 'active') {
