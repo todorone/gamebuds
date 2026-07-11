@@ -6,14 +6,14 @@
 	"routes": [
 		{
 			"pattern": "app.game-buds.com",
-			"custom_domain": true
-		}
+			"custom_domain": true,
+		},
 	],
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "gamebuds-local",
-			"database_id": "local",
+			"database_name": "gamebuds",
+			"database_id": "c262b79c-8b39-41b0-8f0e-5e556798af5d",
 			"migrations_dir": "drizzle/migrations",
 		},
 	],
