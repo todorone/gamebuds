@@ -8,17 +8,17 @@ Gamebuds runs a five-stage validation program from throwaway prototypes to a pub
 
 ## The stage spine
 
-| Stage | Validates | Gate |
-| --- | --- | --- |
-| **A. Game-prototype observation** | Desirability — does a mechanic spark Social Interaction? | ADR 0002 (cooperative two-layer gate + competitive gate) |
-| **B. Connection prototype** | Feasibility — production WebRTC device-to-device + install-to-join | This ADR |
-| **C. Build the 3-Game MVP** | — (build stage, no gate) | — |
-| **D. Closed beta** | Integration — does the whole machine run unmoderated end-to-end? | This ADR |
-| **E. Public MVP → 6-month window** | Traction — group-level repeat play and organic growth | This ADR |
+| Stage                              | Validates                                                          | Gate                                                     |
+| ---------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------- |
+| **A. Game-prototype observation**  | Desirability — does a mechanic spark Social Interaction?           | ADR 0002 (cooperative two-layer gate + competitive gate) |
+| **B. Connection prototype**        | Feasibility — production WebRTC device-to-device + install-to-join | This ADR                                                 |
+| **C. Build the 3-Game MVP**        | — (build stage, no gate)                                           | —                                                        |
+| **D. Closed beta**                 | Integration — does the whole machine run unmoderated end-to-end?   | This ADR                                                 |
+| **E. Public MVP → 6-month window** | Traction — group-level repeat play and organic growth              | This ADR                                                 |
 
 ## Decisions
 
-- **Decouple the connection prototype from the recruiting path.** Stage A observations run on a *throwaway* transport (same Wi-Fi / a trivial relay) because the point is the social signal, not production networking, and desirability is the bigger risk. Stage B (the ADR 0001 WebRTC spike) is at-the-keyboard work interleaved between recruiting sessions. The only hard dependency: **do not start Stage C until both A has selected a slate and B has cleared its bar or picked its pivot.**
+- **Decouple the connection prototype from the recruiting path.** Stage A observations run on a _throwaway_ transport (same Wi-Fi / a trivial relay) because the point is the social signal, not production networking, and desirability is the bigger risk. Stage B (the ADR 0001 WebRTC spike) is at-the-keyboard work interleaved between recruiting sessions. The only hard dependency: **do not start Stage C until both A has selected a slate and B has cleared its bar or picked its pivot.**
 
 - **Time is an estimate, not a gate.** Stage effort estimates (~2mo A, ~1mo B interleaved, ~4mo C, ~1mo D, ~1mo buffer inside the ADR 0001 ~9-month-to-launch budget) are for planning only. Pivots trigger on **evidence**, never on calendar overrun.
 
@@ -43,12 +43,12 @@ Gamebuds runs a five-stage validation program from throwaway prototypes to a pub
 
 - **Expand/iterate/kill logic — retention primary, growth as the scaling gate, monetization separate.**
 
-  | Condition | Call |
-  | --- | --- |
-  | M1 < 10% | **Kill / deep-pivot** — nobody replays; more Games cannot save it (regardless of M2) |
-  | M1 ≥ 30% and M2 ≥ 0.25 | **Expand** toward 6–8 Games |
+  | Condition              | Call                                                                                                            |
+  | ---------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | M1 < 10%               | **Kill / deep-pivot** — nobody replays; more Games cannot save it (regardless of M2)                            |
+  | M1 ≥ 30% and M2 ≥ 0.25 | **Expand** toward 6–8 Games                                                                                     |
   | M1 ≥ 30% but M2 < 0.25 | **Iterate the growth loop** (#15) — the product works but will not spread; more Games will not fix distribution |
-  | M1 10–30% | **Iterate the Games** — retention soft; re-measure before expanding, whatever M2 says |
+  | M1 10–30%              | **Iterate the Games** — retention soft; re-measure before expanding, whatever M2 says                           |
 
   Group Unlock conversion is a **#12** business-viability check, deliberately kept out of this decision: a beloved product that prices wrong is a pricing iterate, not a thesis kill.
 
@@ -62,6 +62,6 @@ Gamebuds runs a five-stage validation program from throwaway prototypes to a pub
 
 ## Consequences
 
-- **M1 depends on a measurement #13 has not yet solved.** Counting distinct Play Gatherings per group over six months needs a longitudinal group signal that collides with the ethical doc's 90-day pseudonymous-aggregate ceiling. Per the scope split, this ADR fixes *what* to measure; #13 must find a privacy-preserving *how*, and if M1 is genuinely unmeasurable within those constraints it kicks back and a proxy is chosen here.
+- **M1 depends on a measurement #13 has not yet solved.** Counting distinct Play Gatherings per group over six months needs a longitudinal group signal that collides with the ethical doc's 90-day pseudonymous-aggregate ceiling. Per the scope split, this ADR fixes _what_ to measure; #13 must find a privacy-preserving _how_, and if M1 is genuinely unmeasurable within those constraints it kicks back and a proxy is chosen here.
 - **The throwaway Stage A transport is deliberate throwaway work**, with a small residual risk that a mechanic feels different on production latency than on Wi-Fi (bounded — these Games are co-located and low-latency by design).
 - **These thresholds are pre-registered.** Revisiting a number mid-stage is itself an ADR-worthy change, not a judgment call, precisely so a good session or a hopeful launch week cannot quietly relax the bar.

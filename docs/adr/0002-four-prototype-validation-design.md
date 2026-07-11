@@ -8,8 +8,8 @@ Gamebuds validates its Cooperative-First bet by observing real teen Play Groups 
 
 ## Decisions
 
-- **Four prototypes, breadth not depth.** Add two *distinct* mechanics on new social axes (Relay Canvas — expressive co-creation; Crowd Read — light competitive social prediction) rather than replicate variants of the existing two. The goal is to explore more of the design space, not to harden two points.
-- **Three cooperative + one competitive.** The three cooperative prototypes (Split Signal, Common Pulse, Relay Canvas) compete for the two cooperative Catalog slots; Crowd Read probes the single competitive slot. The MVP Catalog size is unchanged at three Games (two cooperative + one competitive) — this expands the *validation set*, not the ship list.
+- **Four prototypes, breadth not depth.** Add two _distinct_ mechanics on new social axes (Relay Canvas — expressive co-creation; Crowd Read — light competitive social prediction) rather than replicate variants of the existing two. The goal is to explore more of the design space, not to harden two points.
+- **Three cooperative + one competitive.** The three cooperative prototypes (Split Signal, Common Pulse, Relay Canvas) compete for the two cooperative Catalog slots; Crowd Read probes the single competitive slot. The MVP Catalog size is unchanged at three Games (two cooperative + one competitive) — this expands the _validation set_, not the ship list.
 - **Incomplete-block observation, not within-subjects.** About six teen Play Groups; each plays two of the three cooperative prototypes (~25 minutes) plus Crowd Read. Cooperative pairs are rotated so all three pairs are each directly compared by at least two groups, and every cooperative prototype is observed by four of the six groups.
 - **Two-layer cooperative gate + separate competitive gate.** Each cooperative prototype must clear an absolute per-prototype bar (in at least three of its four groups) before ranking; the top two of those that clear become the two Cooperative MVP Games. Crowd Read is scored pass/fail on its own criteria (teachable in ~1 minute, rematch desire, no exclusion, outcomes independent of prior gaming skill) and never competes for or borrows a cooperative slot.
 
@@ -22,7 +22,7 @@ Gamebuds validates its Cooperative-First bet by observing real teen Play Groups 
 
 ## Consequences
 
-- Recruitment rises from about four to about six Play Groups. This is the real cost of "assessing" more prototypes — piling more prototypes onto the same groups would give *less* evidence per prototype, not more.
+- Recruitment rises from about four to about six Play Groups. This is the real cost of "assessing" more prototypes — piling more prototypes onto the same groups would give _less_ evidence per prototype, not more.
 - No single group experiences the full field, so cross-prototype comparison relies on the rotated pair overlap rather than every group ranking all four directly.
 - The competitive prototype is validated in isolation on its own gate, so it yields less comparative evidence than each cooperative prototype; acceptable because it fills the secondary variety slot.
-- The prototype *concepts* remain throwaway learning vehicles and may be replaced; this ADR records the *validation design* — set size, composition, observation method, and gate — which is the part that would be costly to revisit mid-recruitment.
+- The prototype _concepts_ remain throwaway learning vehicles and may be replaced; this ADR records the _validation design_ — set size, composition, observation method, and gate — which is the part that would be costly to revisit mid-recruitment.
