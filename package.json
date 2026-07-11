@@ -14,7 +14,7 @@
 		"types": "pnpm --recursive --if-present run types",
 		"test": "pnpm --recursive --if-present run test",
 		"build": "pnpm --recursive --if-present run build",
-		"checks": "pnpm format-check && pnpm lint && pnpm types && pnpm test && pnpm build"
+		"checks": "pnpm run \"/^(types|lint|format-check|test|build)$/\""
 	},
 	"devDependencies": {
 		"@eslint/js": "10.0.1",
