@@ -60,6 +60,14 @@ _Avoid_: Cooperative-only
 The exchange of hints, help, reactions, and emotions among Players that a Game Session inspires. It may be verbal or nonverbal and does not have to be required by a Game's rules.
 _Avoid_: Mandatory voice communication
 
+**Interaction Pattern**:
+The structure of interdependence a Game creates between Players—for example asymmetric inference, real-time complementary control, expressive co-creation, or social prediction. A property of the mechanic. One of the two axes the MVP Catalog must span.
+_Avoid_: Genre, game type
+
+**Mood**:
+The dominant emotional register a Game Session produces in its Play Group—for example tense focus, warm play, or silly chaos—independent of the mechanic. Two Games with different Interaction Patterns can still land in the same Mood. One of the two axes the MVP Catalog must span.
+_Avoid_: Theme, tone, vibe
+
 **Session Identity**:
 A temporary display name that lets a Player join and complete their first Game Session without creating an account.
 _Avoid_: Guest account
