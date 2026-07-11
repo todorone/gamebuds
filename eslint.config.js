@@ -5,6 +5,7 @@ export default tseslint.config(
 	eslint.configs.recommended,
 	{
 		ignores: [
+			'.claude/**',
 			'**/dist/**',
 			'**/node_modules/**',
 			'apps/mobile/android/**',
