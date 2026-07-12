@@ -27,6 +27,11 @@ is needed.
 `dev:android` provides the same live-reload workflow for an Android emulator
 or connected device.
 
+Phaser renders the game canvas at least at 2× density (or the device pixel
+ratio when higher). The camera and text textures use the same density, so
+drawn UI and future sprites retain their logical on-screen size while staying
+sharp on high-density displays.
+
 Set `VITE_API_URL` in `.env.local` when the API is not at the local default.
 Use an HTTPS URL for installed and deployed clients. The committed `.env.remote`
 profile points to `https://app.game-buds.com`, and every `*:remote` command

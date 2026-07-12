@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 
+import { logicalViewport, RENDER_DENSITY } from '../render-density';
+
 const TARGET_RADIUS = 42;
 const TARGET_COLORS = [0x22d3ee, 0xa78bfa, 0xf472b6, 0xfbbf24];
 
@@ -14,12 +16,14 @@ export class GameScene extends Phaser.Scene {
 	}
 
 	public create(): void {
+		this.cameras.main.setZoom(RENDER_DENSITY);
 		this.add
 			.text(24, 32, 'GAMEBUDS', {
 				color: '#f9fafb',
 				fontFamily: 'system-ui, sans-serif',
 				fontSize: '24px',
 				fontStyle: '700',
+				resolution: RENDER_DENSITY,
 			})
 			.setScrollFactor(0);
 
@@ -28,18 +32,20 @@ export class GameScene extends Phaser.Scene {
 				color: '#cbd5e1',
 				fontFamily: 'system-ui, sans-serif',
 				fontSize: '18px',
+				resolution: RENDER_DENSITY,
 			})
 			.setScrollFactor(0);
 
 		this.promptLabel = this.add
 			.text(
-				this.scale.width / 2,
-				this.scale.height - 48,
+				logicalViewport(this.scale).width / 2,
+				logicalViewport(this.scale).height - 48,
 				'Tap the glowing bud',
 				{
 					color: '#e2e8f0',
 					fontFamily: 'system-ui, sans-serif',
 					fontSize: '18px',
+					resolution: RENDER_DENSITY,
 				},
 			)
 			.setOrigin(0.5);
@@ -49,21 +55,19 @@ export class GameScene extends Phaser.Scene {
 	}
 
 	private readonly layout = (gameSize: Phaser.Structs.Size): void => {
-		this.promptLabel?.setPosition(gameSize.width / 2, gameSize.height - 48);
+		this.promptLabel?.setPosition(
+			gameSize.width / RENDER_DENSITY / 2,
+			gameSize.height / RENDER_DENSITY - 48,
+		);
 	};
 
 	private spawnTarget(): void {
 		this.target?.destroy();
+		const { width, height } = logicalViewport(this.scale);
 
 		const margin = TARGET_RADIUS + 20;
-		const x = Phaser.Math.Between(
-			margin,
-			Math.max(margin, this.scale.width - margin),
-		);
-		const y = Phaser.Math.Between(
-			130,
-			Math.max(130, this.scale.height - margin - 80),
-		);
+		const x = Phaser.Math.Between(margin, Math.max(margin, width - margin));
+		const y = Phaser.Math.Between(130, Math.max(130, height - margin - 80));
 		const color = Phaser.Utils.Array.GetRandom(TARGET_COLORS);
 
 		this.target = this.add

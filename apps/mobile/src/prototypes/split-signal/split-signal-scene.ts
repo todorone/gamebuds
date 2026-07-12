@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 
+import { logicalViewport, RENDER_DENSITY } from '../../render-density';
 import {
 	createSplitSignalSession,
 	getSplitSignalState,
@@ -45,6 +46,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	public create(): void {
+		this.cameras.main.setZoom(RENDER_DENSITY);
 		this.scale.on(Phaser.Scale.Events.RESIZE, this.redraw, this);
 		this.input.keyboard?.on('keydown-LEFT', () => this.changeVariant(-1));
 		this.input.keyboard?.on('keydown-RIGHT', () => this.changeVariant(1));
@@ -218,8 +220,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private drawLanding(): void {
-		const width = this.scale.width;
-		const height = this.scale.height;
+		const { width, height } = logicalViewport(this.scale);
 		this.add.rectangle(0, 0, width, height, 0x0b1020).setOrigin(0);
 		this.add.circle(width * 0.78, height * 0.14, 130, 0x192449, 0.7);
 		this.add.circle(width * 0.18, height * 0.8, 170, 0x122b3b, 0.6);
@@ -288,9 +289,8 @@ export class SplitSignalScene extends Phaser.Scene {
 	private drawState(state: SplitSignalState): void {
 		const renderKey = JSON.stringify(state);
 		this.lastRenderKey = renderKey;
-		this.add
-			.rectangle(0, 0, this.scale.width, this.scale.height, 0x0b1020)
-			.setOrigin(0);
+		const { width, height } = logicalViewport(this.scale);
+		this.add.rectangle(0, 0, width, height, 0x0b1020).setOrigin(0);
 		this.drawHeader(state);
 
 		if (this.variant === 'A') this.drawSignalDeck(state);
@@ -301,7 +301,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private drawHeader(state: SplitSignalState): void {
-		const width = this.scale.width;
+		const { width } = logicalViewport(this.scale);
 		this.add.text(24, 18, 'SPLIT SIGNAL', this.textStyle(20, '#f8fafc', true));
 		this.add.text(
 			24,
@@ -328,7 +328,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private drawSignalDeck(state: SplitSignalState): void {
-		const width = this.scale.width;
+		const { width, height } = logicalViewport(this.scale);
 		const boardTop = 102;
 		this.drawPanel(20, boardTop, width - 40, 150, 0x131d35);
 		this.add.text(
@@ -345,12 +345,11 @@ export class SplitSignalScene extends Phaser.Scene {
 		);
 		this.drawSharedProgress(state, 40, boardTop + 178, width - 80);
 		this.drawPlayers(state, 20, boardTop + 280, width - 40);
-		this.drawActionPanel(state, 20, this.scale.height - 184, width - 40);
+		this.drawActionPanel(state, 20, height - 184, width - 40);
 	}
 
 	private drawSystemsMap(state: SplitSignalState): void {
-		const width = this.scale.width;
-		const height = this.scale.height;
+		const { width, height } = logicalViewport(this.scale);
 		const centerX = width * 0.49;
 		const centerY = Math.min(height * 0.48, 330);
 
@@ -404,8 +403,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private drawSocialLog(state: SplitSignalState): void {
-		const width = this.scale.width;
-		const height = this.scale.height;
+		const { width, height } = logicalViewport(this.scale);
 		this.add.text(
 			24,
 			96,
@@ -659,8 +657,8 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private drawVariantSwitcher(): void {
-		const width = this.scale.width;
-		const y = this.scale.height - 26;
+		const { width, height } = logicalViewport(this.scale);
+		const y = height - 26;
 		this.drawPanel(width / 2 - 132, y - 17, 264, 34, 0x020617);
 		this.makeButton(
 			width / 2 - 124,
@@ -761,6 +759,7 @@ export class SplitSignalScene extends Phaser.Scene {
 			fontFamily: 'system-ui, sans-serif',
 			fontSize: `${fontSize}px`,
 			fontStyle: bold ? '700' : '400',
+			resolution: RENDER_DENSITY,
 			wordWrap: wordWrapWidth ? { width: wordWrapWidth } : undefined,
 			lineSpacing: 5,
 		};
