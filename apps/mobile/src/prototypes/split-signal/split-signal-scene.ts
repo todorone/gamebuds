@@ -1,6 +1,10 @@
 import Phaser from 'phaser';
 
-import { logicalViewport } from '../../render-density';
+import {
+	configureCameraForRenderDensity,
+	logicalViewport,
+	RENDER_DENSITY,
+} from '../../render-density';
 import {
 	createSplitSignalSession,
 	getSplitSignalState,
@@ -9,6 +13,26 @@ import {
 	sendSplitSignalAction,
 } from './relay';
 import type { SplitSignalNodeId, SplitSignalState } from './types';
+
+export interface SplitSignalTestSeam {
+	getState: () => SplitSignalState | undefined;
+	getCameraView: () => {
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+	};
+}
+
+// PROTOTYPE test seam for issue #24 — delete along with the rest of this
+// throwaway scene once the e2e driving/asserting decision is absorbed or
+// dropped. Lets Playwright read state that canvas pixels do not expose.
+// Dev-only: never attached in a production build.
+declare global {
+	interface Window {
+		__splitSignal?: SplitSignalTestSeam;
+	}
+}
 
 type Variant = 'A' | 'B' | 'C';
 
@@ -40,24 +64,48 @@ export class SplitSignalScene extends Phaser.Scene {
 	private errorMessage?: string;
 	private variant: Variant = this.getVariant();
 	private lastRenderKey = '';
+	private testSeam?: SplitSignalTestSeam;
 
 	public constructor() {
 		super('split-signal-prototype');
 	}
 
 	public create(): void {
-		this.scale.on(Phaser.Scale.Events.RESIZE, this.redraw, this);
+		configureCameraForRenderDensity(this.cameras.main, this.scale);
+		this.scale.on(Phaser.Scale.Events.RESIZE, this.handleResize, this);
+		this.events.once(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
 		this.input.keyboard?.on('keydown-LEFT', () => this.changeVariant(-1));
 		this.input.keyboard?.on('keydown-RIGHT', () => this.changeVariant(1));
 		this.redraw();
 		void this.connectFromUrl();
+
+		if (import.meta.env.DEV) {
+			this.testSeam = {
+				getState: () => this.state,
+				getCameraView: () => {
+					const { x, y, width, height } = this.cameras.main.worldView;
+					return { x, y, width, height };
+				},
+			};
+			window.__splitSignal = this.testSeam;
+		}
 	}
 
 	public shutdown(): void {
+		this.scale.off(Phaser.Scale.Events.RESIZE, this.handleResize, this);
+		if (window.__splitSignal === this.testSeam) {
+			delete window.__splitSignal;
+		}
+		this.testSeam = undefined;
 		if (this.pollTimer) {
 			window.clearInterval(this.pollTimer);
 		}
 	}
+
+	private handleResize = (): void => {
+		configureCameraForRenderDensity(this.cameras.main, this.scale);
+		this.redraw();
+	};
 
 	private getVariant(): Variant {
 		const value = new URLSearchParams(window.location.search).get('variant');
@@ -758,6 +806,7 @@ export class SplitSignalScene extends Phaser.Scene {
 			fontFamily: 'system-ui, sans-serif',
 			fontSize: `${fontSize}px`,
 			fontStyle: bold ? '700' : '400',
+			resolution: RENDER_DENSITY,
 			wordWrap: wordWrapWidth ? { width: wordWrapWidth } : undefined,
 			lineSpacing: 5,
 		};

@@ -41,8 +41,8 @@ A secondary play occasion involving Players from different generations, such as 
 _Avoid_: Children's game
 
 **Catalog**:
-The curated collection of Games a Play Group can browse and launch. The MVP Catalog is its launch instance, and a Prototype is never part of the Catalog.
-_Avoid_: Game library, store
+The curated collection of Games a Play Group can browse and launch. The MVP Catalog is its launch instance; a Prototype is never part of the Catalog.
+_Avoid_: Games list, library, menu
 
 **MVP Catalog**:
 The initial public catalog of three polished Games: two Cooperative Games and one light competitive Game. Expansion toward six to eight Games begins only after the MVP demonstrates healthy retention.

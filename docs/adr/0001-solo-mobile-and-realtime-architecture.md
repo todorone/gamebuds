@@ -8,7 +8,7 @@ Gamebuds is built by a solo, AI-assisted creator shipping iOS and Android within
 
 ## Decisions
 
-- **Client foundation**: keep the existing Capacitor + Phaser + Vite/TypeScript scaffold; not reopened by this ADR. _Amended by [ADR 0004](0004-react-shell-with-per-game-phaser-lifecycle.md): a React shell now owns the Catalog and navigation, with each Game mounting its own `Phaser.Game` instance; Capacitor, Phaser, and Vite/TypeScript themselves are unchanged._
+- **Client foundation**: keep the existing Capacitor + Phaser + Vite/TypeScript scaffold; not reopened by this ADR. _Amended by [ADR 0004](0004-react-shell-per-game-phaser-lifecycle.md): a React shell now owns the Catalog and navigation, with each Game mounting its own `Phaser.Game` instance; Capacitor, Phaser, and Vite/TypeScript themselves are unchanged._
 - **Backend**: Hono on Cloudflare Workers, D1 (via Drizzle ORM) for durable data, R2 for object storage (e.g. Result Card images), Better Auth for Apple/Google sign-in.
 - **Realtime transport**: WebRTC data channels, **device-to-device** (not terminated at a Durable Object). Topology is a star: every non-Host Player's phone connects directly to the **Host**'s phone, which holds authoritative Game Session state. The Hono backend/Durable Objects handle only signaling (SDP/ICE exchange), not the data path.
 - **Host-disconnect behavior (v1)**: if the Host's phone drops, the Game Session ends. No host migration in the first cut.
