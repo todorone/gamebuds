@@ -5,6 +5,10 @@ Gamebuds is a pnpm monorepo with two deployable applications:
 - `apps/mobile` — the Capacitor, Vite, Phaser, iOS, and Android mobile client.
 - `apps/api` — the Hono Cloudflare Worker API.
 
+`apps/e2e-spike` is a temporary, non-deployable Playwright workspace for issue
+#24. It exercises multiple isolated Players against the Split Signal canvas and
+requires Google Chrome.
+
 ## Requirements
 
 - Node.js 24+
@@ -39,7 +43,7 @@ pnpm build
 ```
 
 The root scripts use pnpm recursive execution; no task-orchestration layer is
-required for the two workspaces.
+required for this small workspace set.
 
 ## Contribution flow
 

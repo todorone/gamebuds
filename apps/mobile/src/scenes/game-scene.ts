@@ -1,6 +1,10 @@
 import Phaser from 'phaser';
 
-import { logicalViewport, RENDER_DENSITY } from '../render-density';
+import {
+	configureCameraForRenderDensity,
+	logicalViewport,
+	RENDER_DENSITY,
+} from '../render-density';
 
 const TARGET_RADIUS = 42;
 const TARGET_COLORS = [0x22d3ee, 0xa78bfa, 0xf472b6, 0xfbbf24];
@@ -16,7 +20,7 @@ export class GameScene extends Phaser.Scene {
 	}
 
 	public create(): void {
-		this.cameras.main.setZoom(RENDER_DENSITY);
+		configureCameraForRenderDensity(this.cameras.main, this.scale);
 		this.add
 			.text(24, 32, 'GAMEBUDS', {
 				color: '#f9fafb',
@@ -54,11 +58,10 @@ export class GameScene extends Phaser.Scene {
 		this.spawnTarget();
 	}
 
-	private readonly layout = (gameSize: Phaser.Structs.Size): void => {
-		this.promptLabel?.setPosition(
-			gameSize.width / RENDER_DENSITY / 2,
-			gameSize.height / RENDER_DENSITY - 48,
-		);
+	private readonly layout = (): void => {
+		configureCameraForRenderDensity(this.cameras.main, this.scale);
+		const gameSize = logicalViewport(this.scale);
+		this.promptLabel?.setPosition(gameSize.width / 2, gameSize.height - 48);
 	};
 
 	private spawnTarget(): void {
