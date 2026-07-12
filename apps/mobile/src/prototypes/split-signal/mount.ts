@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 
 import type { GameHandle } from '../../catalog/types';
-import { RENDER_DENSITY } from '../../render-density';
 import { SplitSignalScene } from './split-signal-scene';
 
 export function mount(container: HTMLElement): GameHandle {
@@ -10,20 +9,16 @@ export function mount(container: HTMLElement): GameHandle {
 		parent: container,
 		backgroundColor: '#0b1020',
 		scale: {
-			mode: Phaser.Scale.NONE,
+			mode: Phaser.Scale.RESIZE,
 			autoCenter: Phaser.Scale.CENTER_BOTH,
-			width: window.innerWidth * RENDER_DENSITY,
-			height: window.innerHeight * RENDER_DENSITY,
-			zoom: 1 / RENDER_DENSITY,
+			width: window.innerWidth,
+			height: window.innerHeight,
 		},
 		scene: [SplitSignalScene],
 	});
 
 	const handleResize = (): void => {
-		game.scale.resize(
-			window.innerWidth * RENDER_DENSITY,
-			window.innerHeight * RENDER_DENSITY,
-		);
+		game.scale.resize(window.innerWidth, window.innerHeight);
 	};
 	window.addEventListener('resize', handleResize);
 

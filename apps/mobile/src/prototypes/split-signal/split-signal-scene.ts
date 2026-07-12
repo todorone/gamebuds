@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-import { logicalViewport, RENDER_DENSITY } from '../../render-density';
+import { logicalViewport } from '../../render-density';
 import {
 	createSplitSignalSession,
 	getSplitSignalState,
@@ -46,7 +46,6 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	public create(): void {
-		this.cameras.main.setZoom(RENDER_DENSITY);
 		this.scale.on(Phaser.Scale.Events.RESIZE, this.redraw, this);
 		this.input.keyboard?.on('keydown-LEFT', () => this.changeVariant(-1));
 		this.input.keyboard?.on('keydown-RIGHT', () => this.changeVariant(1));
@@ -759,7 +758,6 @@ export class SplitSignalScene extends Phaser.Scene {
 			fontFamily: 'system-ui, sans-serif',
 			fontSize: `${fontSize}px`,
 			fontStyle: bold ? '700' : '400',
-			resolution: RENDER_DENSITY,
 			wordWrap: wordWrapWidth ? { width: wordWrapWidth } : undefined,
 			lineSpacing: 5,
 		};
