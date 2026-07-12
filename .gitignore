@@ -11,3 +11,6 @@ apps/mobile/ios/App/Pods/
 apps/api/.wrangler/
 apps/api/.dev.vars
 apps/api/local.db
+
+apps/e2e-spike/test-results/
+apps/e2e-spike/playwright-report/
