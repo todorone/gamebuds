@@ -10,11 +10,89 @@
 
 html,
 body,
-#game,
-canvas {
+#root {
 	margin: 0;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+}
+
+.game-host,
+.game-host canvas {
+	width: 100%;
+	height: 100%;
 	touch-action: none;
+}
+
+.catalog {
+	height: 100%;
+	overflow-y: auto;
+	padding: 32px 24px;
+}
+
+.catalog h1 {
+	margin: 0 0 24px;
+	font-size: 28px;
+}
+
+.catalog-empty {
+	color: #94a3b8;
+}
+
+.catalog-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.catalog-entry {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	padding: 16px;
+	border: 1px solid #334155;
+	border-radius: 12px;
+	background: #172238;
+	color: inherit;
+	font-family: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.catalog-entry:hover {
+	background: #1e293b;
+}
+
+.catalog-entry-name {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.catalog-entry-badge {
+	font-size: 11px;
+	font-weight: 700;
+	color: #fbbf24;
+	border: 1px solid #fbbf24;
+	border-radius: 999px;
+	padding: 2px 8px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.catalog-entry-tagline {
+	color: #cbd5e1;
+	font-size: 14px;
+}
+
+.catalog-entry-players {
+	color: #94a3b8;
+	font-size: 12px;
 }
