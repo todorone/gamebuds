@@ -41,6 +41,11 @@ pnpm build
 The root scripts use pnpm recursive execution; no task-orchestration layer is
 required for the two workspaces.
 
+## Contribution flow
+
+Create each change on a feature branch based on the current `main` branch, and
+open a pull request with a clear title and description before merging it.
+
 ## Client commands
 
 ```bash
