@@ -32,6 +32,10 @@ ratio when higher). The camera and text textures use the same density, so
 drawn UI and future sprites retain their logical on-screen size while staying
 sharp on high-density displays.
 
+`assets/branding/app-icon-1024.png` is the master app icon. Its derived iOS,
+Android, favicon, Apple touch, and web-manifest icons are committed with their
+respective platform projects.
+
 Set `VITE_API_URL` in `.env.local` when the API is not at the local default.
 Use an HTTPS URL for installed and deployed clients. The committed `.env.remote`
 profile points to `https://app.game-buds.com`, and every `*:remote` command
