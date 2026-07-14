@@ -61,8 +61,12 @@ test('two players repair the system via real button clicks, asserted through the
 
 	// URL-driven load: each page already knows its Game Session + Player id, so no
 	// window.prompt dialogs are involved.
-	await hostPage.goto(`/?room=${sessionCode}&player=${hostJoin.playerId}`);
-	await p2Page.goto(`/?room=${sessionCode}&player=${p2Join.playerId}`);
+	await hostPage.goto(
+		`/games/split-signal?room=${sessionCode}&player=${hostJoin.playerId}`,
+	);
+	await p2Page.goto(
+		`/games/split-signal?room=${sessionCode}&player=${p2Join.playerId}`,
+	);
 
 	// Wait for the Phaser scene to boot and publish the seam (read-only use).
 	await expect
