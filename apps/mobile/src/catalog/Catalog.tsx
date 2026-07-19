@@ -1,15 +1,19 @@
 import { listCatalog } from './registry';
 
 interface CatalogProps {
+	onHost: () => void;
 	onSelect: (gameId: string) => void;
 }
 
-export function Catalog({ onSelect }: CatalogProps) {
+export function Catalog({ onHost, onSelect }: CatalogProps) {
 	const entries = listCatalog();
 
 	return (
 		<main className="catalog">
 			<h1>Gamebuds</h1>
+			<button type="button" className="catalog-host" onClick={onHost}>
+				Host a Private Session
+			</button>
 			{entries.length === 0 ? (
 				<p className="catalog-empty">No games yet. Check back soon.</p>
 			) : (
