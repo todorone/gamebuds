@@ -114,48 +114,47 @@ test('two players repair the system via real button clicks, asserted through the
 
 	// The repair order is deliberately hidden per-player (that's the game's
 	// mechanic), so the spike doesn't try to solve it — it round-robins real
-	// clicks on the Repair button on both pages until the server reports
-	// completion. A wrong click is a harmless no-op "mistake", not an error.
-	//
-	// Retire each page immediately after its own click reports completion.
-	// If another page completes the session first, the old Repair coordinate
-	// now lands on the harmless celebration-ping button rather than logout.
-	let hostDone = false;
-	let p2Done = false;
-	for (let attempt = 0; attempt < 6 && !(hostDone && p2Done); attempt += 1) {
-		if (!hostDone) {
+	// clicks on the Repair button on both pages. Wrong clicks spend stability,
+	// but two Players can still complete a round before the three-charge reset.
+	const repairRound = async (expectedPhase: 'round-reveal' | 'complete') => {
+		for (let attempt = 0; attempt < 6; attempt += 1) {
 			await hostPage.mouse.click(REPAIR_CLICK.x, REPAIR_CLICK.y);
+			await p2Page.mouse.click(REPAIR_CLICK.x, REPAIR_CLICK.y);
 			const phase = await hostPage.evaluate(
 				() => window.__splitSignal!.getState()?.phase,
 			);
-			if (phase === 'complete') hostDone = true;
+			if (phase === expectedPhase) break;
 		}
-		if (!p2Done) {
-			await p2Page.mouse.click(REPAIR_CLICK.x, REPAIR_CLICK.y);
-			const phase = await p2Page.evaluate(
-				() => window.__splitSignal!.getState()?.phase,
-			);
-			if (phase === 'complete') p2Done = true;
-		}
-	}
 
-	// --- Assert convergence independently in BOTH contexts ---
-	// hostPage's own state updates immediately after its last click, but
-	// p2Page only sees 'complete' once its own 700ms poll cycle catches up —
-	// this is exactly the eventual-consistency gap expect.poll exists for,
-	// not something a single assert-once check could catch reliably.
+		// hostPage updates immediately after its own click, but p2Page observes
+		// the shared phase on its 700ms poll cycle.
+		await expect
+			.poll(
+				() => hostPage.evaluate(() => window.__splitSignal!.getState()?.phase),
+				{ timeout: 5_000 },
+			)
+			.toBe(expectedPhase);
+		await expect
+			.poll(
+				() => p2Page.evaluate(() => window.__splitSignal!.getState()?.phase),
+				{ timeout: 5_000 },
+			)
+			.toBe(expectedPhase);
+	};
+
+	await repairRound('round-reveal');
+	await hostPage.mouse.click(START_CLICK.x, START_CLICK.y);
 	await expect
-		.poll(
-			() => hostPage.evaluate(() => window.__splitSignal!.getState()?.phase),
-			{ timeout: 5_000 },
-		)
-		.toBe('complete');
+		.poll(() => p2Page.evaluate(() => window.__splitSignal!.getState()?.phase))
+		.toBe('active');
+
+	await repairRound('round-reveal');
+	await hostPage.mouse.click(START_CLICK.x, START_CLICK.y);
 	await expect
-		.poll(
-			() => p2Page.evaluate(() => window.__splitSignal!.getState()?.phase),
-			{ timeout: 5_000 },
-		)
-		.toBe('complete');
+		.poll(() => p2Page.evaluate(() => window.__splitSignal!.getState()?.phase))
+		.toBe('active');
+
+	await repairRound('complete');
 
 	// Hold the finished state on screen for a moment when run headed —
 	// otherwise the windows close before you can see the "SYSTEM STABLE"

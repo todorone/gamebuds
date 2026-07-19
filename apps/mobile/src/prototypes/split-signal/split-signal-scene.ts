@@ -12,7 +12,12 @@ import {
 	logoutSplitSignalSession,
 	sendSplitSignalAction,
 } from './relay';
-import type { SplitSignalNodeId, SplitSignalState } from './types';
+import type {
+	SplitSignalActionType,
+	SplitSignalNodeId,
+	SplitSignalPingTarget,
+	SplitSignalState,
+} from './types';
 
 export interface SplitSignalTestSeam {
 	getState: () => SplitSignalState | undefined;
@@ -65,12 +70,14 @@ export class SplitSignalScene extends Phaser.Scene {
 	private variant: Variant = this.getVariant();
 	private lastRenderKey = '';
 	private testSeam?: SplitSignalTestSeam;
+	private isRunning = false;
 
 	public constructor() {
 		super('split-signal-prototype');
 	}
 
 	public create(): void {
+		this.isRunning = true;
 		configureCameraForRenderDensity(this.cameras.main, this.scale);
 		this.scale.on(Phaser.Scale.Events.RESIZE, this.handleResize, this);
 		this.events.once(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
@@ -92,6 +99,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	public shutdown(): void {
+		this.isRunning = false;
 		this.scale.off(Phaser.Scale.Events.RESIZE, this.handleResize, this);
 		if (window.__splitSignal === this.testSeam) {
 			delete window.__splitSignal;
@@ -103,6 +111,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private handleResize = (): void => {
+		if (!this.isRunning) return;
 		configureCameraForRenderDensity(this.cameras.main, this.scale);
 		this.redraw();
 	};
@@ -117,6 +126,7 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private redraw = (): void => {
+		if (!this.isRunning) return;
 		this.children.removeAll(true);
 		this.lastRenderKey = '';
 
@@ -156,11 +166,13 @@ export class SplitSignalScene extends Phaser.Scene {
 				this.playerId = player;
 				this.state = await getSplitSignalState(room, player);
 			}
+			if (!this.isRunning) return;
 
 			this.errorMessage = undefined;
 			this.redraw();
 			this.startPolling();
 		} catch (error) {
+			if (!this.isRunning) return;
 			this.errorMessage =
 				error instanceof Error
 					? error.message
@@ -189,12 +201,13 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private async refreshState(): Promise<void> {
-		if (!this.roomCode || !this.playerId) {
+		if (!this.isRunning || !this.roomCode || !this.playerId) {
 			return;
 		}
 
 		try {
 			const nextState = await getSplitSignalState(this.roomCode, this.playerId);
+			if (!this.isRunning) return;
 			const nextRenderKey = JSON.stringify(nextState);
 			if (nextRenderKey !== this.lastRenderKey) {
 				this.state = nextState;
@@ -202,14 +215,18 @@ export class SplitSignalScene extends Phaser.Scene {
 				this.redraw();
 			}
 		} catch (error) {
+			if (!this.isRunning) return;
 			this.errorMessage =
 				error instanceof Error ? error.message : 'Connection lost.';
 			this.redraw();
 		}
 	}
 
-	private async sendAction(type: 'start' | 'ping' | 'repair'): Promise<void> {
-		if (!this.roomCode || !this.playerId) {
+	private async sendAction(
+		type: SplitSignalActionType,
+		target?: SplitSignalPingTarget,
+	): Promise<void> {
+		if (!this.isRunning || !this.roomCode || !this.playerId) {
 			return;
 		}
 
@@ -218,10 +235,13 @@ export class SplitSignalScene extends Phaser.Scene {
 				this.roomCode,
 				this.playerId,
 				type,
+				target,
 			);
+			if (!this.isRunning) return;
 			this.errorMessage = undefined;
 			this.redraw();
 		} catch (error) {
+			if (!this.isRunning) return;
 			this.errorMessage =
 				error instanceof Error ? error.message : 'Action failed.';
 			this.redraw();
@@ -229,12 +249,13 @@ export class SplitSignalScene extends Phaser.Scene {
 	}
 
 	private async logout(): Promise<void> {
-		if (!this.roomCode || !this.playerId) {
+		if (!this.isRunning || !this.roomCode || !this.playerId) {
 			return;
 		}
 
 		try {
 			await logoutSplitSignalSession(this.roomCode, this.playerId);
+			if (!this.isRunning) return;
 			if (this.pollTimer) {
 				window.clearInterval(this.pollTimer);
 				this.pollTimer = undefined;
@@ -279,7 +300,7 @@ export class SplitSignalScene extends Phaser.Scene {
 		this.add.text(
 			28,
 			145,
-			'Everyone sees one fragment.\nRepair the system by sharing what you know.',
+			'Everyone sees one private fragment.\nRepair three short rounds by sharing what you know.',
 			this.textStyle(21, '#cbd5e1', false, Math.min(500, width - 56)),
 		);
 
@@ -509,9 +530,17 @@ export class SplitSignalScene extends Phaser.Scene {
 		this.add.text(
 			x,
 			y,
-			`SHARED REPAIR CHAIN  ${state.progress.length}/${state.players.length}`,
+			`ROUND ${state.round}/${state.totalRounds}  •  REPAIR CHAIN ${state.progress.length}/${state.players.length}`,
 			this.textStyle(12, '#8fa4c7', true),
 		);
+		this.add
+			.text(
+				x + width,
+				y,
+				`STABILITY ${state.stability}/${state.maximumStability}`,
+				this.textStyle(12, state.stability === 1 ? '#fda4af' : '#67e8f9', true),
+			)
+			.setOrigin(1, 0);
 		const gap = 8;
 		const tileWidth = Math.max(
 			56,
@@ -552,16 +581,23 @@ export class SplitSignalScene extends Phaser.Scene {
 		y: number,
 		width: number,
 	): void {
-		this.add.text(x, y, 'WHO HOLDS WHAT', this.textStyle(12, '#8fa4c7', true));
+		this.add.text(
+			x,
+			y,
+			state.phase === 'active'
+				? 'WHO HOLDS WHAT  •  TAP A TEAMMATE TO PING'
+				: 'WHO HOLDS WHAT',
+			this.textStyle(12, '#8fa4c7', true),
+		);
 		const gap = 8;
 		const cardWidth =
 			(width - gap * (state.players.length - 1)) / state.players.length;
 		state.players.forEach((player, index) => {
 			const cardX = x + index * (cardWidth + gap);
-			const node = state.nodes.find(
-				(item) => item.id === player.controlledNodeId,
-			);
-			this.drawPanel(
+			const node = player.controlledNodeId
+				? state.nodes.find((item) => item.id === player.controlledNodeId)
+				: undefined;
+			const playerCard = this.drawPanel(
 				cardX,
 				y + 26,
 				cardWidth,
@@ -572,7 +608,9 @@ export class SplitSignalScene extends Phaser.Scene {
 				cardX + 18,
 				y + 48,
 				6,
-				NODE_COLORS[player.controlledNodeId],
+				player.controlledNodeId
+					? NODE_COLORS[player.controlledNodeId]
+					: 0x64748b,
 			);
 			this.add.text(
 				cardX + 32,
@@ -583,9 +621,30 @@ export class SplitSignalScene extends Phaser.Scene {
 			this.add.text(
 				cardX + 18,
 				y + 62,
-				node?.label ?? 'signal',
+				node?.label ?? 'private signal',
 				this.textStyle(11, '#94a3b8', false, cardWidth - 28),
 			);
+			if (state.phase === 'active' && player.id !== state.you.id) {
+				playerCard.setInteractive({ useHandCursor: true });
+				playerCard.on(
+					Phaser.Input.Events.POINTER_DOWN,
+					() => void this.sendAction('ping', { targetPlayerId: player.id }),
+				);
+				playerCard.on(Phaser.Input.Events.POINTER_OVER, () =>
+					playerCard.setAlpha(0.8),
+				);
+				playerCard.on(Phaser.Input.Events.POINTER_OUT, () =>
+					playerCard.setAlpha(1),
+				);
+				this.add
+					.text(
+						cardX + cardWidth - 10,
+						y + 87,
+						'PING',
+						this.textStyle(9, '#f0abfc', true),
+					)
+					.setOrigin(1);
+			}
 		});
 	}
 
@@ -597,7 +656,9 @@ export class SplitSignalScene extends Phaser.Scene {
 	): void {
 		this.drawPanel(x, y, width, 152, 0x131d35);
 		const isLobby = state.phase === 'lobby';
+		const isRoundReveal = state.phase === 'round-reveal';
 		const isComplete = state.phase === 'complete';
+		const isStopped = state.phase === 'stopped';
 		if (isLobby) {
 			this.add.text(
 				x + 20,
@@ -625,32 +686,100 @@ export class SplitSignalScene extends Phaser.Scene {
 			return;
 		}
 
+		if (isRoundReveal) {
+			this.add.text(
+				x + 20,
+				y + 16,
+				`ROUND ${state.round} RESTORED`,
+				this.textStyle(20, '#67e8f9', true),
+			);
+			this.add.text(
+				x + 20,
+				y + 46,
+				this.revealSummary(state),
+				this.textStyle(13, '#cbd5e1', false, width - 40),
+			);
+			if (state.you.isHost) {
+				this.makeButton(
+					x + 20,
+					y + 86,
+					width - 40,
+					46,
+					`Start round ${state.round + 1}`,
+					() => void this.sendAction('next-round'),
+					0x2563eb,
+				);
+			} else {
+				this.add.text(
+					x + 20,
+					y + 102,
+					'Look at the shared reveal. The Host starts the next round.',
+					this.textStyle(13, '#94a3b8', false, width - 40),
+				);
+			}
+			return;
+		}
+
 		if (isComplete) {
 			this.add.text(
 				x + 20,
 				y + 18,
-				'SYSTEM STABLE',
+				'ALL THREE ROUNDS STABLE',
 				this.textStyle(20, '#67e8f9', true),
 			);
 			this.add.text(
 				x + 20,
 				y + 50,
-				'Who noticed the final signal first? Offer another round without prompting.',
+				`${this.revealSummary(state)} What does the Play Group want to do?`,
+				this.textStyle(14, '#cbd5e1', false, width - 40),
+			);
+			if (state.you.isHost) {
+				this.makeButton(
+					x + 20,
+					y + 86,
+					width * 0.48,
+					46,
+					'Play again',
+					() => void this.sendAction('play-again'),
+					0x7c3aed,
+				);
+				this.makeButton(
+					x + width * 0.52,
+					y + 86,
+					width * 0.48 - 20,
+					46,
+					'Stop testing',
+					() => void this.sendAction('stop'),
+					0x2563eb,
+				);
+			} else {
+				this.add.text(
+					x + 20,
+					y + 102,
+					'Talk it over. The Host makes the group choice.',
+					this.textStyle(13, '#94a3b8', false, width - 40),
+				);
+			}
+			return;
+		}
+
+		if (isStopped) {
+			this.add.text(
+				x + 20,
+				y + 18,
+				'GAME SESSION ENDED',
+				this.textStyle(20, '#67e8f9', true),
+			);
+			this.add.text(
+				x + 20,
+				y + 50,
+				'Thanks for testing Split Signal. Record what felt clear, tense, or social.',
 				this.textStyle(14, '#cbd5e1', false, width - 40),
 			);
 			this.makeButton(
 				x + 20,
 				y + 86,
-				width * 0.48,
-				46,
-				'Send a celebration ping',
-				() => void this.sendAction('ping'),
-				0x7c3aed,
-			);
-			this.makeButton(
-				x + width * 0.52,
-				y + 86,
-				width * 0.48 - 20,
+				width - 40,
 				46,
 				'Finish & log out',
 				() => void this.logout(),
@@ -665,21 +794,27 @@ export class SplitSignalScene extends Phaser.Scene {
 		this.add.text(
 			x + 20,
 			y + 16,
-			`YOUR ACTION  •  ${controlledNode?.label ?? 'signal'}`,
+			`ROUND ${state.round}/${state.totalRounds}  •  ${controlledNode?.label ?? 'signal'}`,
 			this.textStyle(13, '#8fa4c7', true),
 		);
 		this.add.text(
 			x + 20,
 			y + 42,
-			`Mistakes ${state.mistakes}  •  every Player repairs one fragment`,
+			`Stability ${state.stability}/${state.maximumStability}  •  mistakes ${state.mistakes}`,
 			this.textStyle(13, '#94a3b8'),
+		);
+		this.add.text(
+			x + 20,
+			y + 62,
+			'Tap a teammate card to ping them, or ping your signal.',
+			this.textStyle(12, '#94a3b8', false, width - 40),
 		);
 		this.makeButton(
 			x + 20,
 			y + 84,
 			width * 0.56,
 			48,
-			`Repair ${controlledNode?.label ?? 'signal'}`,
+			'Repair my signal',
 			() => void this.sendAction('repair'),
 			NODE_COLORS[state.you.controlledNodeId],
 		);
@@ -688,8 +823,11 @@ export class SplitSignalScene extends Phaser.Scene {
 			y + 84,
 			width * 0.44 - 52,
 			48,
-			'Ping',
-			() => void this.sendAction('ping'),
+			'Ping this signal',
+			() =>
+				void this.sendAction('ping', {
+					targetNodeId: state.you.controlledNodeId,
+				}),
 			0x7c3aed,
 		);
 
@@ -701,6 +839,16 @@ export class SplitSignalScene extends Phaser.Scene {
 				this.textStyle(13, '#fda4af', false, width - 40),
 			);
 		}
+	}
+
+	private revealSummary(state: SplitSignalState): string {
+		if (!state.reveal) {
+			return 'The repaired order will appear here for everyone.';
+		}
+
+		return state.reveal.order
+			.map((nodeId) => state.nodes.find((node) => node.id === nodeId)?.label)
+			.join(' → ');
 	}
 
 	private drawVariantSwitcher(): void {
@@ -788,8 +936,8 @@ export class SplitSignalScene extends Phaser.Scene {
 		width: number,
 		height: number,
 		color: number,
-	): void {
-		this.add
+	): Phaser.GameObjects.Rectangle {
+		return this.add
 			.rectangle(x, y, width, height, color, 1)
 			.setOrigin(0)
 			.setStrokeStyle(1, 0x334155, 0.8);

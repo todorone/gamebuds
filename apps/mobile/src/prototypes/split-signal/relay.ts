@@ -1,6 +1,8 @@
 import type {
+	SplitSignalActionType,
 	SplitSignalJoinResponse,
 	SplitSignalLogoutResponse,
+	SplitSignalPingTarget,
 	SplitSignalResponse,
 	SplitSignalState,
 } from './types';
@@ -57,13 +59,14 @@ export async function getSplitSignalState(
 export async function sendSplitSignalAction(
 	code: string,
 	playerId: string,
-	type: 'start' | 'ping' | 'repair',
+	type: SplitSignalActionType,
+	target?: SplitSignalPingTarget,
 ): Promise<SplitSignalState> {
 	const response = await request<SplitSignalResponse>(
 		`/sessions/${encodeURIComponent(code)}/actions`,
 		{
 			method: 'POST',
-			body: JSON.stringify({ playerId, type }),
+			body: JSON.stringify({ playerId, type, ...target }),
 		},
 	);
 	return response.state;
