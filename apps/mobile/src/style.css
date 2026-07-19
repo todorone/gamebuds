@@ -24,6 +24,15 @@ body,
 	touch-action: none;
 }
 
+.game-host-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: 0;
+	transform: translate(-50%, -50%);
+	color: #cbd5e1;
+}
+
 .catalog {
 	height: 100%;
 	overflow-y: auto;
@@ -66,6 +75,97 @@ body,
 
 .catalog-entry:hover {
 	background: #1e293b;
+}
+
+.catalog-host,
+.session-flow button {
+	border: 0;
+	border-radius: 10px;
+	background: #2563eb;
+	color: #fff;
+	padding: 14px 18px;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.catalog-host {
+	width: 100%;
+	margin: 0 0 16px;
+}
+
+.session-flow {
+	min-height: 100%;
+	max-width: 540px;
+	margin: 0 auto;
+	padding: 48px 24px;
+}
+
+.session-flow h1 {
+	margin: 4px 0 16px;
+	font-size: 32px;
+}
+
+.session-flow p {
+	color: #cbd5e1;
+	line-height: 1.5;
+}
+
+.session-eyebrow {
+	margin: 0;
+	color: #67e8f9 !important;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.session-flow form,
+.session-actions {
+	display: grid;
+	gap: 12px;
+	margin-top: 28px;
+}
+
+.session-flow label {
+	font-weight: 700;
+}
+
+.session-flow input {
+	width: 100%;
+	border: 1px solid #475569;
+	border-radius: 10px;
+	background: #172238;
+	color: inherit;
+	padding: 14px;
+	font: inherit;
+}
+
+.session-qr {
+	display: flex;
+	justify-content: center;
+	margin: 28px 0 16px;
+	padding: 16px;
+	border-radius: 16px;
+	background: #fff;
+}
+
+.session-code strong {
+	color: #fbbf24;
+	letter-spacing: 0.08em;
+}
+
+.session-link {
+	display: block;
+	margin: 24px 0 8px;
+}
+
+.session-secondary {
+	background: #334155 !important;
+}
+
+.session-error {
+	color: #fda4af !important;
 }
 
 .catalog-entry-name {
