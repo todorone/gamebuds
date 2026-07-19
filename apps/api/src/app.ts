@@ -4,6 +4,7 @@ import type { MiddlewareHandler } from 'hono';
 
 import { isAllowedOrigin } from './cors.js';
 import type { AppEnv } from './env.js';
+import { commonPulseRoutes } from './prototypes/common-pulse.js';
 import { splitSignalRoutes } from './prototypes/split-signal.js';
 
 const originGuard: MiddlewareHandler<AppEnv> = async (context, next) => {
@@ -26,6 +27,7 @@ export const app = new Hono<AppEnv>()
 	.use('*', originGuard)
 	.use('*', corsMiddleware)
 	.get('/health', (context) => context.json({ status: 'ok' as const }))
-	.route('/prototype/split-signal', splitSignalRoutes);
+	.route('/prototype/split-signal', splitSignalRoutes)
+	.route('/prototype/common-pulse', commonPulseRoutes);
 
 export type AppType = typeof app;

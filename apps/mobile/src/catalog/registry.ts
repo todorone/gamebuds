@@ -1,3 +1,4 @@
+import { commonPulseManifest } from '../prototypes/common-pulse/manifest';
 import { splitSignalManifest } from '../prototypes/split-signal/manifest';
 import type { CatalogEntry } from './types';
 
@@ -5,6 +6,10 @@ export const catalogEntries: CatalogEntry[] = [
 	{
 		manifest: splitSignalManifest,
 		load: () => import('../prototypes/split-signal/mount'),
+	},
+	{
+		manifest: commonPulseManifest,
+		load: () => import('../prototypes/common-pulse/mount'),
 	},
 ];
 
